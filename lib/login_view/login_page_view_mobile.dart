@@ -6,23 +6,38 @@ class LoginPageMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-      Siz
-        PageView(
-          scrollDirection: Axis.horizontal,
-          controller: pageViewController,
-          children: const <Widget>[
-            Center(
-              child: Text('First Page'),
-            ),
-            Center(
-              child: Text('Second Page'),
-            ),
-
-          ],
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        children: [
+          /*Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  child: ElevatedButton(
+                child: Text("tab1"),
+                onPressed: () {},
+              )),
+              Expanded(
+                  child: ElevatedButton(
+                child: Text("tab2"),
+                onPressed: () {},
+              )),
+            ],
+          ),*/
+          PageView(
+            scrollDirection: Axis.horizontal,
+            controller: pageViewController,
+            children: const <Widget>[
+              Center(
+                child: Text('First Page'),
+              ),
+              Center(
+                child: Text('Second Page'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
