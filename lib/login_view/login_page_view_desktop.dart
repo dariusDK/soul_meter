@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/widgets/desktop/login/login_box.dart';
+import 'package:soul_meter/widgets/desktop/login/login_desktop_box.dart';
 
 class LoginPageDesktop extends StatelessWidget {
   @override
