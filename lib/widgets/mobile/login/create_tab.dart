@@ -7,13 +7,14 @@ class CreateTab extends StatelessWidget {
   final emailTextWidget = DefaultTextBoxWidget("e-mail", Icons.mail, false);
   final passwordTextWidget = DefaultTextBoxWidget("password", Icons.lock, true);
   final nickNameTextWidget =
-      DefaultTextBoxWidget("nick name", Icons.mail, false);
+      DefaultTextBoxWidget("nick name", Icons.account_box, false);
   final passwordAgainTextWidget =
       DefaultTextBoxWidget("password again", Icons.lock, true);
   bool _isCreateAccount = false;
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: loginBoxDecoration,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

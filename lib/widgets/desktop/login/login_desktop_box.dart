@@ -23,10 +23,12 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: SizedBox(
-        height: 700,
+        height: 500,
         width: 500,
         child: Container(
+          decoration: loginBoxDecoration,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               LoginSituationWidget(situation),
               Container(
@@ -51,48 +53,54 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    child: Text(
-                      loginButtonText,
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          child: Text(
+                            loginButtonText,
+                          ),
+                          onPressed: () {
+                            _isCreateAccount
+                                ? createAccount(
+                                    nickNameTextWidget.getText,
+                                    emailTextWidget.getText,
+                                    passwordTextWidget.getText,
+                                    passwordAgainTextWidget.getText)
+                                : login(emailTextWidget.getText,
+                                    passwordTextWidget.getText);
+                          },
+                          style: defaultButtonDecoration,
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      _isCreateAccount
-                          ? createAccount(
-                              nickNameTextWidget.getText,
-                              emailTextWidget.getText,
-                              passwordTextWidget.getText,
-                              passwordAgainTextWidget.getText)
-                          : login(emailTextWidget.getText,
-                              passwordTextWidget.getText);
-                    },
-                    style: defaultButtonDecoration,
-                  ),
-                ],
-              ),
-              GestureDetector(
-                child: Container(
-                    padding: EdgeInsets.all(45),
-                    child: Text(
-                      createSituation,
-                      style: clickableText,
-                    )),
-                onTap: () {
-                  setState(() {
-                    _isCreateAccount = !_isCreateAccount;
-                    createSituation =
-                        _isCreateAccount ? "Login" : "Create Account";
-                    situation = !_isCreateAccount ? "Login" : "Create Account";
-                    loginButtonText =
-                        !_isCreateAccount ? "Login" : "Create Account";
-                  });
-                },
+                    GestureDetector(
+                      child: Container(
+                          padding: EdgeInsets.all(45),
+                          child: Text(
+                            createSituation,
+                            style: clickableText,
+                          )),
+                      onTap: () {
+                        setState(() {
+                          _isCreateAccount = !_isCreateAccount;
+                          createSituation =
+                              _isCreateAccount ? "Login" : "Create Account";
+                          situation =
+                              !_isCreateAccount ? "Login" : "Create Account";
+                          loginButtonText =
+                              !_isCreateAccount ? "Login" : "Create Account";
+                        });
+                      },
+                    )
+                  ],
+                ),
               )
             ],
           ),
-          decoration: BoxDecoration(color: loginBoxColor),
         ),
       ),
     );
