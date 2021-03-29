@@ -25,6 +25,7 @@ class _LoginTabState extends State<LoginTab> {
           ElevatedButton(
             onPressed: () {
               login(emailTextWidget.getText, passwordTextWidget.getText);
+              Navigator.pushNamed(context, "/home");
             },
             child: Text(loginButtonText),
             style: defaultButtonDecoration,
