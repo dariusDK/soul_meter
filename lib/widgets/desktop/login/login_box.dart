@@ -65,7 +65,8 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                               passwordTextWidget.getText,
                               passwordAgainTextWidget.getText)
                           : login(emailTextWidget.getText,
-                              passwordTextWidget.getText);
+                              passwordTextWidget.getText,
+                              emailTextWidget);
                     },
                     style: defaultButtonDecoration,
                   ),
@@ -97,16 +98,23 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
     );
   }
 
-  void login(String email, String password) {
-    if (email.contains("@") && email.contains(".")) {
+  void login(String email, String password,DefaultTextBoxWidget emailTextWidget) {
+    //if (   !(email.contains("@") &&   email.contains("."))   ||   email==('')   ||   password==('') ) {
       //pop up benzeri gelelbilir hataları yazmak için
-      if (password.length > 5) {}
-    }
+   //   if (password.length > 5) {}
+ //   }
+
+print(emailTextWidget.formKey.currentState.validate());
+
+
+
+
+
   }
 
   void createAccount(
       String nickName, String email, String password, String passwordAgain) {
-    if (email.contains("@") && email.contains(".")) {
+    if (email.contains("@") && email.contains(".")||email==''||password=='') {
       print("mail");
       //pop up benzeri gelelbilir hataları yazmak için
       if (password.length > 5 && password == passwordAgain) {
