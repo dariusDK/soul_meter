@@ -72,6 +72,7 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                                     passwordAgainTextWidget.getText)
                                 : login(emailTextWidget.getText,
                                     passwordTextWidget.getText);
+                            Navigator.pushNamed(context, "/home");
                           },
                           style: defaultButtonDecoration,
                         ),
