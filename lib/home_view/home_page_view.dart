@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/widgets/buttons/home_appbar_button.dart';
-import 'package:soul_meter/widgets/custom_appbar/custom_appbar.dart';
+import 'package:soul_meter/home_view/home_page_view_desktop.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child: CustomAppBar());
+    return Container(
+      child: HomePageDesktop(),
+    );
   }
 }
