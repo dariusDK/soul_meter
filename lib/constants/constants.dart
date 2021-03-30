@@ -45,4 +45,4 @@ var loginBoxDecoration = BoxDecoration(
 ButtonStyle appBarButtonDecoration = ElevatedButton.styleFrom(
     primary: Colors.green,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    fixedSize: Size(100, 20));
+    );

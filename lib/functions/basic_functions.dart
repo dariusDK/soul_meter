@@ -1,18 +1,45 @@
-void login(String email, String password) {
-  if (email.contains("@") && email.contains(".")) {
-    //pop up benzeri gelelbilir hataları yazmak için
-    if (password.length > 5) {}
-  }
-}
+import 'package:soul_meter/widgets/text_box/default_text_box.dart';
 
-void createAccount(
-    String nickName, String email, String password, String passwordAgain) {
-  if (email.contains("@") && email.contains(".")) {
-    print("mail");
-    //pop up benzeri gelelbilir hataları yazmak için
-    if (password.length > 5 && password == passwordAgain) {
-      print("pass");
-      if (nickName.length > 3) {}
-    }
+void login(DefaultTextBoxWidget email, DefaultTextBoxWidget password) {
+  if (   (email.getText.contains("@") &&   email.getText.contains(".")) ) {
+    email.formKey.currentState.validate();}
+
+     if(email.getText==('')){
+       email.formKey.currentState.validate();
+     }
+     if(password.getText==('')){
+       password.formKey.currentState.validate();
+     }
+      if (!(password.getText.length > 5)) {
+       password.formKey.currentState.validate();
+
+      }
+
   }
-}
+
+  void createAccount(
+      DefaultTextBoxWidget nickName, DefaultTextBoxWidget email, DefaultTextBoxWidget password, DefaultTextBoxWidget passwordAgain) {
+    
+    
+  if (   (email.getText.contains("@") &&   email.getText.contains(".")) ) {
+    email.formKey.currentState.validate();}
+
+     if(email.getText==('')){
+       email.formKey.currentState.validate();
+     }
+     if(password.getText==('')){
+       password.formKey.currentState.validate();
+     }
+     if(nickName.getText==('')){
+       nickName.formKey.currentState.validate();
+     }
+     if(passwordAgain.getText==('')){
+       passwordAgain.formKey.currentState.validate();
+     }
+      if (!(password.getText.length > 5 && password.getText==passwordAgain)) {
+               password.formKey.currentState.validate();
+
+      }
+      if(nickName.getText<3){}
+nickName.formKey.currentState.validate();
+  }

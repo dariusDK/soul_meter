@@ -66,12 +66,12 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                           onPressed: () {
                             _isCreateAccount
                                 ? createAccount(
-                                    nickNameTextWidget.getText,
-                                    emailTextWidget.getText,
-                                    passwordTextWidget.getText,
-                                    passwordAgainTextWidget.getText)
-                                : login(emailTextWidget.getText,
-                                    passwordTextWidget.getText);
+                                    nickNameTextWidget,
+                                    emailTextWidget,
+                                    passwordTextWidget,
+                                    passwordAgainTextWidget)
+                                : login(emailTextWidget,
+                                    passwordTextWidget);
                             Navigator.pushNamed(context, "/home");
                           },
                           style: defaultButtonDecoration,
