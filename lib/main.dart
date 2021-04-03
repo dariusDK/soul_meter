@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/home_view/home_page_view.dart';
 import 'package:soul_meter/login_view/login_page_view.dart';
+import 'dart:ui';
+import 'constants/state_container.dart';
 
 void main() {
   bool isAuthucanted = false;
