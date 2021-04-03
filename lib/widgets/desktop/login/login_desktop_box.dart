@@ -1,8 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
-import 'package:soul_meter/widgets/buttons/login_button.dart';
 import 'package:soul_meter/widgets/desktop/login/login_situation.dart';
 import 'package:soul_meter/widgets/text_box/default_text_box.dart';
 

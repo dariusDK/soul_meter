@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soul_meter/user/user.dart';
 
 const primarySwatch = Colors.blue;
 ButtonStyle defaultButtonDecoration =
@@ -53,4 +54,17 @@ PopupMenuItem appBarMenuItem = PopupMenuItem(
   Text("settings"),
 ]));
 
-bool isSpotifySelected = false;
+var isSpotifySelected = ValueNotifier(false);
+var isNetflixSelected = ValueNotifier(false);
+var isSteamSelected = ValueNotifier(false);
+List<User> dummyUserList = [
+  User("1", "mail1", "name1", "username1"),
+  User("2", "mail1", "name1", "username1"),
+  User("3", "mail1", "name1", "username1"),
+  User("4", "mail1", "name1", "username1"),
+  User("5", "mail1", "name1", "username1"),
+  User("6", "mail1", "name1", "username1"),
+  User("7", "mail1", "name1", "username1"),
+  User("8", "mail1", "name1", "username1"),
+  User("9", "mail1", "name1", "username1"),
+];

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/widgets/desktop/login/login_desktop_box.dart';
 import 'package:soul_meter/widgets/mobile/login/login_page_view_widget.dart';
 
 class LoginMobileBoxWidget extends StatefulWidget {

@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:soul_meter/constants/constants.dart';
 
 class HomeAppbarButton extends StatelessWidget {
   @override
@@ -13,8 +10,10 @@ class HomeAppbarButton extends StatelessWidget {
           message: 'Spotify Datas',
           child: Text(
             'Spotify',
-            style:
-                TextStyle(color: Colors.black, decoration: TextDecoration.none),
+            style: TextStyle(
+                color: Colors.black,
+                decoration: TextDecoration.none,
+                fontSize: 44),
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),

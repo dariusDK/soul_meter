@@ -1,8 +1,25 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'dart:async';
+
 void login(String email, String password) {
   if (email.contains("@") && email.contains(".")) {
     //pop up benzeri gelelbilir hataları yazmak için
-    if (password.length > 5) {}
+    if (password.length > 5) {
+      if (fireBaseAuth(email, password)) {
+        if (sendEmailToServer(email)) {}
+      }
+    }
   }
+}
+
+bool sendEmailToServer(String email) {
+  //başarılı girişte kullanıcı e maili gönderilir
+}
+
+bool fireBaseAuth(String email, String password) {
+  //firesbae e buran girişi yap
 }
 
 void createAccount(
@@ -12,7 +29,25 @@ void createAccount(
     //pop up benzeri gelelbilir hataları yazmak için
     if (password.length > 5 && password == passwordAgain) {
       print("pass");
-      if (nickName.length > 3) {}
+      if (nickName.length > 3) {
+        if (createUserFirebase(email, password)) {
+          if (sendNewUserToServer(email, nickName)) {}
+        }
+      }
     }
   }
+}
+
+bool createUserFirebase(String email, String password) {}
+
+bool sendNewUserToServer(String email, String nickName) {}
+
+double rateFuction(String user1, String user2) {
+  //server a karşılaştıralacak verileri gönderip al
+}
+
+Future<String> getSpotifyData(String id) async {
+  var result =
+      await http.get(Uri.https("jsonplaceholder.typicode.com", "users/1"));
+  return result.body;
 }

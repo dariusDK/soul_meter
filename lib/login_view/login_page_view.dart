@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/login_view/login_page_view_desktop.dart';
 import 'package:soul_meter/login_view/login_page_view_mobile.dart';
-import 'dart:ui' as ui;
 
 class LoginPage extends StatelessWidget {
   @override
