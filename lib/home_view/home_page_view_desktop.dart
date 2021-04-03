@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/constants/state_container.dart';
 import 'package:soul_meter/widgets/api_box/api_desktop_box.dart';
 import 'package:soul_meter/widgets/custom_appbar/custom_desktop_appbar.dart';
 

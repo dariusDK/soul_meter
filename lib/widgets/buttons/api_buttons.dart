@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/constants/state_container.dart';
+import 'package:soul_meter/functions/api_functions.dart';
 
 class ApiButtonWidget extends StatefulWidget {
-  final String text;
+  final String title;
 
   const ApiButtonWidget(
-    this.text,
+    this.title,
   );
 
   @override
@@ -23,11 +23,11 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            child: Text(widget.text),
+            child: Text(widget.title),
             style: apiButtonDecoration,
             onPressed: () {
               setState(() {
-                checked = true;
+                checked = isAuthCompleted(widget.title);
               });
             },
           ),
@@ -39,5 +39,16 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
         ],
       ),
     );
+  }
+
+  bool isAuthCompleted(String title) {
+    if (title == "Spotify") {
+      if (getSpotifyAuthCode().then((value) => value) != null) {
+        isSpotifySelected.value = true;
+        return true;
+      }
+    }
+    if (title == "Netflix") {}
+    if (title == "Steam") {}
   }
 }
