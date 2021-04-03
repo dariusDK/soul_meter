@@ -42,7 +42,15 @@ var loginBoxDecoration = BoxDecoration(
       )
     ]);
 
-ButtonStyle appBarButtonDecoration = ElevatedButton.styleFrom(
-    primary: Colors.green,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    fixedSize: Size(100, 20));
+ButtonStyle apiButtonDecoration = ElevatedButton.styleFrom(
+  primary: Colors.green,
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  fixedSize: Size(200, 40),
+);
+PopupMenuItem appBarMenuItem = PopupMenuItem(
+    child: Row(children: [
+  Icon(Icons.account_balance_outlined),
+  Text("settings"),
+]));
+
+bool isSpotifySelected = false;
