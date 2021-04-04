@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
-import 'package:soul_meter/widgets/text_box/default_text_box.dart';
+import 'package:soul_meter/widgets/text_boxs/default_text_box.dart';
 
 class LoginTab extends StatefulWidget {
   @override
