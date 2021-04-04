@@ -43,7 +43,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
 
   bool isAuthCompleted(String title) {
     if (title == "Spotify") {
-      if (getSpotifyAuthCode().then((value) => value) != null) {
+      if (getSpotifyAuthCode() != null) {
         isSpotifySelected.value = true;
         return true;
       }

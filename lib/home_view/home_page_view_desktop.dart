@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/widgets/api_box/api_desktop_box.dart';
 import 'package:soul_meter/widgets/custom_appbar/custom_desktop_appbar.dart';
+import 'package:soul_meter/widgets/desktop/home/desktop_result_box.dart';
 
 import 'package:soul_meter/widgets/search/search_bar_desktop_box.dart';
 
@@ -16,12 +17,16 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
       child: Column(
         children: [
           CustomDesktopAppBar(),
-          Row(
-            children: [
-              ApiDesktopBox(),
-              SearchBarDesktopBox(),
-            ],
+          Container(
+            height: MediaQuery.of(context).size.height / 2,
+            child: Row(
+              children: [
+                ApiDesktopBox(),
+                SearchBarDesktopBox(),
+              ],
+            ),
           ),
+          ResultDesktopBox()
         ],
       ),
     );

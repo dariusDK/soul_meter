@@ -7,9 +7,9 @@ class SearchBarDesktopBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 600,
-        height: 185,
+        padding: EdgeInsets.only(left: 50, top: 50),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "Find Your Soulmate",
