@@ -12,7 +12,7 @@ class SearchBarDesktopBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Find Your Soulmate",
+              "Find Your ",
               style: TextStyle(
                 fontSize: 66,
               ),
