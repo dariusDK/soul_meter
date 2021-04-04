@@ -4,7 +4,7 @@ import 'package:spotify_sdk/spotify_sdk.dart';
 Future<bool> getSpotifyAuthCode() async {
   String URL_AUTH = 'https://accounts.spotify.com/de/authorize';
   String ClientId = 'f1c7433d34324ec5bd7edc2885ea0e5c';
-  String redirectUrl = 'http://localhost:61966/#/auth';
+  String redirectUrl = 'https://server-side-308019.web.app/#/';
 
   String response_type = 'code';
   String scope =
