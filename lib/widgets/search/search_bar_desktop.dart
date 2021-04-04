@@ -13,7 +13,7 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 400),
-      width: _folded ? 56 : 600,
+      width: _folded ? 56 : 550,
       height: 56,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
