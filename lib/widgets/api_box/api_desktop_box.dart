@@ -13,7 +13,6 @@ class _ApiDesktopBoxState extends State<ApiDesktopBox> {
       margin: EdgeInsetsDirectional.only(start: 20, end: 300, top: 200),
       width: 300,
       height: 500,
-      color: Colors.grey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
