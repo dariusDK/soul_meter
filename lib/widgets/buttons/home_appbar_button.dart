@@ -5,7 +5,7 @@ class HomeAppbarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         child: Tooltip(
           message: 'Spotify Datas',
           child: Text(
@@ -13,7 +13,7 @@ class HomeAppbarButton extends StatelessWidget {
             style: TextStyle(
                 color: Colors.black,
                 decoration: TextDecoration.none,
-                fontSize: 44),
+                fontSize: 0.035 * MediaQuery.of(context).size.height),
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),

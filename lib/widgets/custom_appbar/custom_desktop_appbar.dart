@@ -11,7 +11,7 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 100,
+        height: MediaQuery.of(context).size.height / 10,
         margin: EdgeInsets.only(top: 10, right: 10, left: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
