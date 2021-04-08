@@ -24,7 +24,13 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
         children: [
           ElevatedButton(
             child: Text(widget.title),
-            style: apiButtonDecoration,
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              fixedSize: Size(MediaQuery.of(context).size.width / 8,
+                  MediaQuery.of(context).size.height / 20),
+            ),
             onPressed: () {
               setState(() {
                 checked = isAuthCompleted(widget.title);

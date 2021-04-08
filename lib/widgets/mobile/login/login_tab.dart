@@ -18,17 +18,24 @@ class _LoginTabState extends State<LoginTab> {
     return Container(
       //decoration: loginBoxDecoration,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          emailTextWidget,
-          passwordTextWidget,
-          ElevatedButton(
-            onPressed: () {
-              login(emailTextWidget.getText, passwordTextWidget.getText);
-              Navigator.pushNamed(context, "/home");
-            },
-            child: Text(loginButtonText),
-            style: defaultButtonDecoration,
+          Column(
+            children: [
+              emailTextWidget,
+              passwordTextWidget,
+            ],
+          ),
+          Container(
+            //margin: EdgeInsets.only(top: 20),
+            child: ElevatedButton(
+              onPressed: () {
+                login(emailTextWidget.getText, passwordTextWidget.getText);
+                Navigator.pushNamed(context, "/home");
+              },
+              child: Text(loginButtonText),
+              style: defaultButtonDecoration,
+            ),
           )
         ],
       ),

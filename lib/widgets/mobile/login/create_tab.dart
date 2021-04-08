@@ -14,24 +14,30 @@ class CreateTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: loginBoxDecoration,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          nickNameTextWidget,
-          emailTextWidget,
-          passwordTextWidget,
-          passwordAgainTextWidget,
-          ElevatedButton(
-              style: defaultButtonDecoration,
-              onPressed: () {
-                createAccount(
-                    nickNameTextWidget.getText,
-                    emailTextWidget.getText,
-                    passwordTextWidget.getText,
-                    passwordAgainTextWidget.getText);
-              },
-              child: Text("Create Account"))
+          Column(
+            children: [
+              nickNameTextWidget,
+              emailTextWidget,
+              passwordTextWidget,
+              passwordAgainTextWidget,
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.only(bottom: 65),
+            child: ElevatedButton(
+                style: defaultButtonDecoration,
+                onPressed: () {
+                  createAccount(
+                      nickNameTextWidget.getText,
+                      emailTextWidget.getText,
+                      passwordTextWidget.getText,
+                      passwordAgainTextWidget.getText);
+                },
+                child: Text("Create Account")),
+          )
         ],
       ),
     );

@@ -21,7 +21,7 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: SizedBox(
-        height: 500,
+        height: 500, //taşma yapmıyor böyle kalabilir.
         width: 500,
         child: Container(
           decoration: loginBoxDecoration,

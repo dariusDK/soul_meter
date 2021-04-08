@@ -15,19 +15,14 @@ class LoginPageViewWidget extends StatelessWidget {
         padding: EdgeInsets.only(left: 30, right: 30, bottom: 160),
         child: Container(
           decoration: loginBoxDecoration,
-          child: SizedBox(
-            //height: MediaQuery.of(context).size.height / 2,
-
-            /// işe yarıyolar mı çözemedim işe yaramıyorsa kaldırın.
-            //width: MediaQuery.of(context).size.width,
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              controller: pageViewController,
-              children: <Widget>[
-                LoginTab(),
-                CreateTab(),
-              ],
-            ),
+          child: PageView(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            controller: pageViewController,
+            children: <Widget>[
+              LoginTab(),
+              CreateTab(),
+            ],
           ),
         ),
       ),
