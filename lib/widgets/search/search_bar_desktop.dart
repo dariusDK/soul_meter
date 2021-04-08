@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/constants/constants.dart';
 
 class SearchBarDesktop extends StatefulWidget {
   @override

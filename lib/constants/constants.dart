@@ -68,3 +68,5 @@ List<User> dummyUserList = [
   User("8", "mail1", "name1", "username1"),
   User("9", "mail1", "name1", "username1"),
 ];
+
+String spAuthCode = "";
