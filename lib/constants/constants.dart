@@ -3,7 +3,7 @@ import 'package:soul_meter/user/user.dart';
 
 const primarySwatch = Colors.blue;
 ButtonStyle defaultButtonDecoration =
-    ElevatedButton.styleFrom(primary: Colors.green);
+    ElevatedButton.styleFrom(primary: Colors.green, fixedSize: Size(130, 20));
 String situation = "Login";
 String createSituation = "Create Account";
 String loginButtonText = "Log in";
@@ -44,6 +44,7 @@ var loginBoxDecoration = BoxDecoration(
     ]);
 
 ButtonStyle apiButtonDecoration = ElevatedButton.styleFrom(
+  // context gerek olduğundan kullanılmıyo
   primary: Colors.green,
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
   minimumSize: Size(200, 40),

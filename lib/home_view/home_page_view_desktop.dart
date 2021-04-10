@@ -18,7 +18,6 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
         children: [
           CustomDesktopAppBar(),
           Container(
-            height: MediaQuery.of(context).size.height / 2,
             child: Row(
               children: [
                 ApiDesktopBox(),
@@ -26,7 +25,6 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
               ],
             ),
           ),
-          ResultDesktopBox()
         ],
       ),
     );

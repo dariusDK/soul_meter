@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/widgets/desktop/home/desktop_result_box.dart';
 import 'package:soul_meter/widgets/search/search_bar_desktop.dart';
-import 'dart:ui' as ui;
 
 class SearchBarDesktopBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height,
+        // color: Colors.green,
+        height: MediaQuery.of(context).size.height * 0.70,
         width: MediaQuery.of(context).size.width / 3,
-        padding: EdgeInsets.only(left: 50, top: 50),
+        margin: EdgeInsets.only(left: 50, top: 100),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              "How many soulmeter between you and...",
-              style: TextStyle(
-                fontSize: 66,
-              ),
+            Column(
+              children: [
+                Text(
+                  "Find Your SoulMate ",
+                  style: TextStyle(
+                    fontSize: 0.030 * MediaQuery.of(context).size.width,
+                  ),
+                ),
+                SearchBarDesktop(),
+              ],
+
             ),
-            SizedBox(
-              height: 50,
-            ),
-            SearchBarDesktop()
+            ResultDesktopBox(),
           ],
         ));
   }
