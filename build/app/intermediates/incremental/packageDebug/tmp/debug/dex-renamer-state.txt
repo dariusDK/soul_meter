@@ -1,0 +1,4 @@
+#Mon Mar 29 20:51:55 EET 2021
+base.0=C\:\\Users\\ozan9\\Documents\\GitHub\\soul_meter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
