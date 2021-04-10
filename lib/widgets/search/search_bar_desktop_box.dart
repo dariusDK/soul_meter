@@ -23,6 +23,7 @@ class SearchBarDesktopBox extends StatelessWidget {
                 ),
                 SearchBarDesktop(),
               ],
+
             ),
             ResultDesktopBox(),
           ],

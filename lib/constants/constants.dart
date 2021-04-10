@@ -47,7 +47,7 @@ ButtonStyle apiButtonDecoration = ElevatedButton.styleFrom(
   // context gerek olduğundan kullanılmıyo
   primary: Colors.green,
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-  fixedSize: Size(200, 40),
+  minimumSize: Size(200, 40),
 );
 PopupMenuItem appBarMenuItem = PopupMenuItem(
     child: Row(children: [
