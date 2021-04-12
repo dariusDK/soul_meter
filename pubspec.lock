@@ -99,7 +99,18 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "1.8.1"
+=======
+    version: "1.8.0"
+  spotify_sdk:
+    dependency: "direct main"
+    description:
+      name: spotify_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+>>>>>>> Stashed changes
   stack_trace:
     dependency: transitive
     description:

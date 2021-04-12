@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primarySwatch,
       ),
-      home: isAuth ? HomePage() : LoginPage(), //değiş
+      home: !isAuth ? HomePage() : LoginPage(), //değiş
       routes: <String, WidgetBuilder>{
         "/login": (BuildContext context) => LoginPage(),
         "/home": (BuildContext context) => HomePage(),

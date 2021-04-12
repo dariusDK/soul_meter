@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 const primarySwatch = Colors.blue;
 ButtonStyle defaultButtonDecoration =
+<<<<<<< Updated upstream
     ElevatedButton.styleFrom(primary: Colors.green);
+=======
+    ElevatedButton.styleFrom(primary: Colors.green, minimumSize: Size(130, 20));
+>>>>>>> Stashed changes
 String situation = "Login";
 String createSituation = "Create Account";
 String loginButtonText = "Log in";
