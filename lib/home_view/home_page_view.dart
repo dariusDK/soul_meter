@@ -5,6 +5,7 @@ import 'dart:js' as js;
 
 import 'package:soul_meter/home_view/home_page_view_mobile.dart';
 import 'package:soul_meter/widgets/custom_appbar/custom_mobile_side_bar.dart';
+import 'package:soul_meter/widgets/custom_appbar/drawer_mobile.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
             : HomePageDesktop(),
       ),
       drawer: MediaQuery.of(context).size.width < 600.0?
-        Drawer(child:Text('afssafs')):
+        DrawerMobile():
         null,
     );
   }

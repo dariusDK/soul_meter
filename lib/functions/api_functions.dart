@@ -22,5 +22,6 @@ Future<bool> getSpotifyAuthCode() async {
   } on MissingPluginException catch (e) {
     print("plugin hatası");
   }
-  return authenticationToken;
+  //return authenticationToken;
+  return true;
 }
