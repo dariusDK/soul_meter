@@ -24,25 +24,22 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
         child: Center(
           child: Row(
             children: [
-              
               ValueListenableBuilder(
                   valueListenable: isSpotifySelected,
                   builder: (context, value, child) {
                     return Visibility(
                         visible: value, child: HomeAppbarButton());
                   }),
-                  PopupMenuButton(
-            itemBuilder: (BuildContext bc) => [
-              PopupMenuItem(child: Text("Profile"), value: "/newchat"),
-              PopupMenuItem(
-                  child: Text("Settings"), value: "/new-group-chat"),
-              PopupMenuItem(child: Text("Log out"), value: "/settings"),
-            ],
-            onSelected: (route) {
-              
-            },
-          ),
-                  
+              PopupMenuButton(
+                offset: Offset(0, 50),
+                itemBuilder: (BuildContext bc) => [
+                  PopupMenuItem(child: Text("Profile"), value: "/newchat"),
+                  PopupMenuItem(
+                      child: Text("Settings"), value: "/new-group-chat"),
+                  PopupMenuItem(child: Text("Log out"), value: "/settings"),
+                ],
+                onSelected: (route) {},
+              ),
             ],
           ),
         ));
