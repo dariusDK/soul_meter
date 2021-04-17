@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ResultDesktopBox extends StatefulWidget {
-  String deneme = "70%";
+  String deneme = "31%";
   bool goster = false;
   @override
   _ResultDesktopBoxState createState() => _ResultDesktopBoxState();
@@ -14,7 +14,7 @@ class _ResultDesktopBoxState extends State<ResultDesktopBox> {
     return Container(
       child: CircularPercentIndicator(
         animation: true,
-        percent: 0.7,
+        percent: 0.31,
         radius: 200,
         lineWidth: 15,
         linearGradient: LinearGradient(

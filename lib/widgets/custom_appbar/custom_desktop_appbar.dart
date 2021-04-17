@@ -29,7 +29,17 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
                   builder: (context, value, child) {
                     return Visibility(
                         visible: value, child: HomeAppbarButton());
-                  })
+                  }),
+              PopupMenuButton(
+                padding:EdgeInsets.only(left:95*(MediaQuery.of(context).size.width)/100),
+                offset: Offset(95*(MediaQuery.of(context).size.width)/100, 50),
+                itemBuilder: (BuildContext bc) => [
+                  PopupMenuItem(child: Text("Profile"), value: "/newchat"),
+                  PopupMenuItem( child: Text("Settings"), value: "/new-group-chat"),
+                  PopupMenuItem(child: Text("Log out"), value: "/settings"),
+                ],
+                onSelected: (route) {},
+              ),
             ],
           ),
         ));
