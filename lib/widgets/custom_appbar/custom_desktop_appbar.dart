@@ -6,42 +6,67 @@ class CustomDesktopAppBar extends StatefulWidget {
   @override
   _CustomDesktopAppBarState createState() => _CustomDesktopAppBarState();
 }
-
+var x=0;
 class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
         height: MediaQuery.of(context).size.height / 10,
         margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+        padding: EdgeInsets.only(left: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
+            borderRadius: BorderRadius.circular(20),
             //color: Colors.grey.shade100, //tema rengi
             boxShadow: kElevationToShadow[24],
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Colors.purple, Colors.blue])),
-        child: Center(
-          child: Row(
-            children: [
-              ValueListenableBuilder(
-                  valueListenable: isSpotifySelected,
-                  builder: (context, value, child) {
-                    return Visibility(
-                        visible: value, child: HomeAppbarButton());
-                  }),
-              PopupMenuButton(
-                padding:EdgeInsets.only(left:95*(MediaQuery.of(context).size.width)/100),
-                offset: Offset(95*(MediaQuery.of(context).size.width)/100, 50),
-                itemBuilder: (BuildContext bc) => [
-                  PopupMenuItem(child: Text("Profile"), value: "/newchat"),
-                  PopupMenuItem( child: Text("Settings"), value: "/new-group-chat"),
-                  PopupMenuItem(child: Text("Log out"), value: "/settings"),
-                ],
-                onSelected: (route) {},
-              ),
-            ],
-          ),
+        child: Row(//mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            PopupMenuButton(
+                  tooltip: "Log Out",
+                  icon: Icon(Icons.clear_rounded ),
+                  offset: Offset(0, 58),
+                 
+                  itemBuilder: (BuildContext bc) => [
+                    PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Icon(Icons.logout),
+                            Text("Log out"),
+                          ],
+                        ), ),
+                  ],
+                  onSelected: (route) {////tıklanınca logut yapsın kenks menks ve de cenks
+                     Navigator.pushNamed(context, "/login");
+                     print("içerdeyim");
+                  },
+                ),
+            ValueListenableBuilder(
+                valueListenable: isSpotifySelected,
+                builder: (context, value, child) {
+                  return Visibility(
+                      visible: value, child: HomeAppbarButton()
+                      );
+                }),
+                ValueListenableBuilder(
+                valueListenable: isSpotifySelected,
+                builder: (context, value, child) {
+                  return Visibility(
+                      visible: value, child: HomeAppbarButton()
+                      );
+                }),
+                ValueListenableBuilder(
+                valueListenable: isSpotifySelected,
+                builder: (context, value, child) {
+                  return Visibility(
+                      visible: value, child: HomeAppbarButton()
+                      );
+                }),
+
+                
+          ],
         ));
   }
 }
