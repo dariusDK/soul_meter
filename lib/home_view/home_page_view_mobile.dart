@@ -15,7 +15,7 @@ class HomePageMobile extends StatelessWidget {
             child: Row(
               children: [
                 //ApiMobileBox(),
-                //SearchBarMobileBox(),
+                SearchBarMobileBox(),
               ],
             ),
           ),
