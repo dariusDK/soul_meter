@@ -20,7 +20,7 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Colors.purple, Colors.blue])),
+                colors: [Colors.red[200], Colors.orange[200]])),
         child: Center(
           child: Row(
             children: [
@@ -29,7 +29,7 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
                   builder: (context, value, child) {
                     return Visibility(
                         visible: value, child: HomeAppbarButton());
-                  })
+                  }),
             ],
           ),
         ));

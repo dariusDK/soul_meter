@@ -4,13 +4,13 @@ import 'package:soul_meter/home_view/home_page_view_desktop.dart';
 import 'dart:js' as js;
 
 class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-
   HomePage() {
     var uri = Uri.tryParse(js.context['location']['href']);
     spAuthCode = uri.queryParameters['code'];
+    print(spAuthCode);
   }
+  @override
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {

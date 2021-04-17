@@ -71,3 +71,4 @@ List<User> dummyUserList = [
 ];
 
 String spAuthCode = "";
+String email = "temp@email.";

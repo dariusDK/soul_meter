@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soul_meter/callback_view/callback.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/home_view/home_page_view.dart';
 import 'package:soul_meter/login_view/login_page_view.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primarySwatch,
       ),
-      home: isAuth ? HomePage() : LoginPage(), //değiş
+      home: !isAuth ? HomePage() : LoginPage(), //değiş
       routes: <String, WidgetBuilder>{
         "/login": (BuildContext context) => LoginPage(),
         "/home": (BuildContext context) => HomePage(),
+        "/callback": (BuildContext context) => CallBackView()
       },
     );
   }
