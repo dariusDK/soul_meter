@@ -47,7 +47,6 @@ double rateFuction(String user1, String user2) {
 }
 
 Future<String> getSpotifyData(String id) async {
-  var result =
-      await http.get(Uri.https("jsonplaceholder.typicode.com", "users/1"));
+  var result = await http.get(Uri.http("localhost:8080", "/deneme"));
   return result.body;
 }
