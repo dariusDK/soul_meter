@@ -49,10 +49,9 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
 
   bool isAuthCompleted(String title) {
     if (title == "Spotify") {
-      if (getSpotifyAuthCode() != null) {
-        isSpotifySelected.value = true;
-        return true;
-      }
+      getSpotifyAuthCode();
+      isSpotifySelected.value = true;
+      return true;
     }
     if (title == "Netflix") {}
     if (title == "Steam") {}
