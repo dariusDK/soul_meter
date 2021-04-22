@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/user/user.dart';
 
+///      Dev Mode
+bool isLocal = true;
+
+/// canlıya geçince değiştir
 const primarySwatch = Colors.blue;
 ButtonStyle defaultButtonDecoration =
     ElevatedButton.styleFrom(primary: Colors.green, fixedSize: Size(130, 20));
@@ -71,4 +75,16 @@ List<User> dummyUserList = [
 ];
 
 String spAuthCode = "";
-String email = "temp@email.";
+String userEmail = "";
+String userName = "";
+String serverUrl = "127.0.0.1:8080";
+
+//Spotify*------------------------------------------
+String spClientID = "f1c7433d34324ec5bd7edc2885ea0e5c";
+String spResponseType = "code";
+String spRedirectUrl = "http://127.0.0.1:8080/spauth";
+String spScope =
+    "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%user-library-read";
+
+//-----------------------------------
+String spAuthUrl = "https://accounts.spotify.com/authorize";

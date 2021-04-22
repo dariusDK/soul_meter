@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/api_functions.dart';
 import 'dart:js' as js;
+import 'dart:convert';
 
 class ApiButtonWidget extends StatefulWidget {
   final String title;
@@ -36,10 +37,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
             ),
             onPressed: () {
               setState(() {
-                //checked = isAuthCompleted(widget.title);
-                var result = js.context.callMethod('open', [
-                  'https://accounts.spotify.com/authorize?client_id=f1c7433d34324ec5bd7edc2885ea0e5c&response_type=code&redirect_uri=https://sbe.cu.edu.tr&scope=user-read-private%20user-read-email%20user-top-read&state=34fFs29kd09'
-                ]);
+                checked = isAuthCompleted(widget.title);
               });
             },
           ),
@@ -55,10 +53,9 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
 
   bool isAuthCompleted(String title) {
     if (title == "Spotify") {
-      if (getSpotifyAuthCode() != null) {
-        isSpotifySelected.value = true;
-        return true;
-      }
+      getSpotifyAuthCode();
+      isSpotifySelected.value = true;
+      return true;
     }
     if (title == "Netflix") {}
     if (title == "Steam") {}
