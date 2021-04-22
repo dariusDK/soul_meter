@@ -39,10 +39,12 @@ bool createUserFirebase(String email, String password) {}
 
 double rateFuction(String user1, String user2) {
   //server a karşılaştıralacak verileri gönderip al
+  //kaan- server get
 }
 
 Future<String> getSpotifyData(String id) async {
-  var result = await http.get(Uri.http("localhost:8080", "/deneme"));
+  var result = await http.get(
+      Uri.http("localhost:8080", "/deneme")); // kaan server da aç ve bağlan
   return result.body;
 }
 
