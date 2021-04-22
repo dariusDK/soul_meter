@@ -32,7 +32,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
               primary: Colors.green,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
-              fixedSize: Size(MediaQuery.of(context).size.width / 8,
+              minimumSize: Size(MediaQuery.of(context).size.width / 8,
                   MediaQuery.of(context).size.height / 20),
             ),
             onPressed: () {

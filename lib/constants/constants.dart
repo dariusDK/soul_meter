@@ -7,7 +7,7 @@ bool isLocal = true;
 /// canlıya geçince değiştir
 const primarySwatch = Colors.blue;
 ButtonStyle defaultButtonDecoration =
-    ElevatedButton.styleFrom(primary: Colors.green, fixedSize: Size(130, 20));
+    ElevatedButton.styleFrom(primary: Colors.green, minimumSize: Size(130, 20));
 String situation = "Login";
 String createSituation = "Create Account";
 String loginButtonText = "Log in";
