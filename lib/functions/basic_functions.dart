@@ -11,6 +11,8 @@ void login(String email, String password) {
     if (password.length > 5) {
       userEmail = email;
       getUserStatus(email);
+
+
       if (fireBaseAuth(email, password)) {}
     }
   }
@@ -38,14 +40,16 @@ bool createUserFirebase(String email, String password) {}
 
 double rateFuction(String user1, String user2) {
   //server a karşılaştıralacak verileri gönderip al
+  //kaan- server get
 }
 
 Future<String> getSpotifyData(String id) async {
-  var result = await http.get(Uri.http("localhost:8080", "/deneme"));
+  var result = await http.get(
+      Uri.http("localhost:8080", "/deneme")); // kaan server da aç ve bağlan
   return result.body;
 }
 
-Future<dynamic> getUserStatus(String userEmail) {
+Future<dynamic> getUserStatus(String userEmail) async {
   return getFromServerMethod("/checkuser" + "?email=$userEmail");
 }
 
@@ -53,12 +57,18 @@ Future<dynamic> getFromServerMethod(String path) async {
   var result;
   if (isLocal) {
     await http
-        .get(Uri.http(serverUrl, path))
-        .then((value) => result = jsonDecode(value.body));
+        .get(Uri.http(
+          serverUrl,
+          path,
+        ))
+        .then((value) => result = jsonDecode((value.body)));
   } else {
     await http
-        .get(Uri.https(serverUrl, path))
-        .then((value) => result = jsonDecode(value.body));
+        .get(Uri.https(
+          serverUrl,
+          path,
+        ))
+        .then((value) => result = jsonDecode((value.body)));
   }
   return result;
 }

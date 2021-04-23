@@ -6,7 +6,9 @@ class CustomDesktopAppBar extends StatefulWidget {
   @override
   _CustomDesktopAppBarState createState() => _CustomDesktopAppBarState();
 }
-var x=0;
+
+var x = 0;
+
 class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
   @override
   Widget build(BuildContext context) {
@@ -22,50 +24,44 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Colors.purple, Colors.blue])),
-        child: Row(//mainAxisAlignment: MainAxisAlignment.end,
+        child: Row(
+          //mainAxisAlignment: MainAxisAlignment.end,
           children: [
             PopupMenuButton(
-                  tooltip: "Log Out",
-                  icon: Icon(Icons.clear_rounded ),
-                  offset: Offset(0, 58),
-                 
-                  itemBuilder: (BuildContext bc) => [
-                    PopupMenuItem(
-                        child: Row(
-                          children: [
-                            Icon(Icons.logout),
-                            Text("Log out"),
-                          ],
-                        ), ),
-                  ],
-                  onSelected: (route) {////tıklanınca logut yapsın kenks menks ve de cenks
-                     Navigator.pushNamed(context, "/login");
-                     print("içerdeyim");
-                  },
+              tooltip: "Log Out",
+              icon: Icon(Icons.clear_rounded),
+              offset: Offset(0, 58),
+              itemBuilder: (BuildContext bc) => [
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout),
+                      Text("Log out"),
+                    ],
+                  ),
                 ),
+              ],
+              onSelected: (route) {
+                ////tıklanınca logut yapsın kenks menks ve de cenks
+                Navigator.pushNamed(context, "/login");
+                print("içerdeyim");
+              },
+            ),
             ValueListenableBuilder(
                 valueListenable: isSpotifySelected,
                 builder: (context, value, child) {
-                  return Visibility(
-                      visible: value, child: HomeAppbarButton()
-                      );
+                  return Visibility(visible: value, child: HomeAppbarButton());
                 }),
-                ValueListenableBuilder(
+            ValueListenableBuilder(
                 valueListenable: isSpotifySelected,
                 builder: (context, value, child) {
-                  return Visibility(
-                      visible: value, child: HomeAppbarButton()
-                      );
+                  return Visibility(visible: value, child: HomeAppbarButton());
                 }),
-                ValueListenableBuilder(
+            ValueListenableBuilder(
                 valueListenable: isSpotifySelected,
                 builder: (context, value, child) {
-                  return Visibility(
-                      visible: value, child: HomeAppbarButton()
-                      );
+                  return Visibility(visible: value, child: HomeAppbarButton());
                 }),
-
-                
           ],
         ));
   }
