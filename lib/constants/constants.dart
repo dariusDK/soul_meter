@@ -79,7 +79,7 @@ String userEmail = "";
 String userName = "";
 String serverUrl = "127.0.0.1:8080";
 
-//Spotify*------------------------------------------
+//-----------Spotiffy---------
 String spClientID = "f1c7433d34324ec5bd7edc2885ea0e5c";
 String spResponseType = "code";
 String spRedirectUrl = "http://127.0.0.1:8080/spauth";

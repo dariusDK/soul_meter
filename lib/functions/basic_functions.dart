@@ -12,6 +12,7 @@ void login(String email, String password) {
       userEmail = email;
       getUserStatus(email);
 
+
       if (fireBaseAuth(email, password)) {}
     }
   }
