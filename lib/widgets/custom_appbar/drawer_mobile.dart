@@ -4,6 +4,7 @@ import 'package:soul_meter/functions/api_functions.dart';
 import 'package:soul_meter/widgets/api_box/api_desktop_box.dart';
 import 'package:soul_meter/widgets/buttons/api_buttons.dart';
 import 'package:soul_meter/widgets/buttons/api_buttons.dart';
+
 class DrawerMobile extends StatefulWidget {
   @override
   _DrawerMobileState createState() => _DrawerMobileState();
@@ -21,7 +22,6 @@ class _DrawerMobileState extends State<DrawerMobile> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Çakal Necmi Limited Company"),
-               
               ],
             ),
           )),
@@ -38,9 +38,9 @@ class _DrawerMobileState extends State<DrawerMobile> {
             title: Text('Spotify'),
             trailing: Icon(Icons.arrow_drop_down),
             children: <Widget>[
-               ApiButtonWidget("Spotify"),
-               ApiButtonWidget("Netflix"),
-               ApiButtonWidget("Steam"),
+              ApiButtonWidget("Spotify"),
+              ApiButtonWidget("Netflix"),
+              ApiButtonWidget("Steam"),
             ],
           ),
           Divider(
@@ -50,19 +50,18 @@ class _DrawerMobileState extends State<DrawerMobile> {
             leading: Icon(Icons.perm_device_information),
             title: Text('Spotify'),
             trailing: Icon(Icons.arrow_drop_down),
-            children: <Widget>[
-               Text("Spotify Datas")
-            ],
+            children: <Widget>[Text("Spotify Datas")],
           ),
-          Visibility( visible:isSpotifySelected.value,// parametreye bağla
-                      child: ExpansionTile(
+          Visibility(
+            visible: isSpotifySelected.value, // parametreye bağla
+            child: ExpansionTile(
               leading: Icon(Icons.perm_device_information),
               title: Text('Spotify'),
               trailing: Icon(Icons.arrow_drop_down),
               children: <Widget>[
-                 ApiButtonWidget("Spotify"),
-                 ApiButtonWidget("Netflix"),
-                 ApiButtonWidget("Steam"),
+                ApiButtonWidget("Spotify"),
+                ApiButtonWidget("Netflix"),
+                ApiButtonWidget("Steam"),
               ],
             ),
           ),
@@ -70,12 +69,11 @@ class _DrawerMobileState extends State<DrawerMobile> {
       ),
     );
   }
+
   bool isAuthCompleted(String title) {
     if (title == "Spotify") {
-      if (getSpotifyAuthCode() != null) {
-        isSpotifySelected.value = true;
-        return true;
-      }
+      isSpotifySelected.value = true;
+      return true;
     }
     if (title == "Netflix") {}
     if (title == "Steam") {}
