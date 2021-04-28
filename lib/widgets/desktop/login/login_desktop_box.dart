@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
@@ -62,18 +63,33 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                             loginButtonText,
                           ),
                           onPressed: () {
-                            _isCreateAccount
-                                ? createAccount(
-                                    nickNameTextWidget.getText,
-                                    emailTextWidget.getText,
-                                    passwordTextWidget.getText,
-                                    passwordAgainTextWidget.getText)
-                                : login(emailTextWidget.getText,
-                                    passwordTextWidget.getText);
-                            Navigator.pushNamed(context, "/home");
+                            if (_isCreateAccount) {
+                              createAccount(
+                                      nickNameTextWidget.getText,
+                                      emailTextWidget.getText,
+                                      passwordTextWidget.getText,
+                                      passwordAgainTextWidget.getText)
+                                  .then((value) => value
+                                      ? Navigator.pushNamed(context, "/")
+                                      : print(
+                                          "kullanıcı oluşturulması bekleniyor"));
+                            } else {
+                              login(emailTextWidget.getText,
+                                      passwordTextWidget.getText)
+                                  .then((value) => value
+                                      ? Navigator.pushNamed(context, "/home")
+                                      : print(
+                                          "kullanıcı girişi yapılması bekleniyor"));
+                            }
                           },
                           style: defaultButtonDecoration,
                         ),
+                        ElevatedButton(
+                            onPressed: () {
+                              print(auth.currentUser);
+                              print(_isCreateAccount);
+                            },
+                            child: Text("Current user print "))
                       ],
                     ),
                     GestureDetector(

@@ -1,10 +1,9 @@
 import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/api_functions.dart';
-import 'dart:js' as js;
-import 'dart:convert';
 
 class ApiButtonWidget extends StatefulWidget {
   final String title;
@@ -41,11 +40,17 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
               });
             },
           ),
-          Checkbox(
-              value: checked,
-              checkColor: Colors.white,
-              activeColor: Colors.lightBlueAccent,
-              onChanged: (bool value) {})
+          ValueListenableBuilder(
+              valueListenable: widget.title == "Spotify"
+                  ? isSpotifySelected
+                  : isSteamSelected,
+              builder: (context, value, child) {
+                return Checkbox(
+                    value: value,
+                    checkColor: Colors.white,
+                    activeColor: Colors.lightBlueAccent,
+                    onChanged: (bool value) {});
+              })
         ],
       ),
     );

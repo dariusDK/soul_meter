@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/user/user.dart';
 
@@ -62,17 +63,7 @@ PopupMenuItem appBarMenuItem = PopupMenuItem(
 var isSpotifySelected = ValueNotifier(false);
 var isNetflixSelected = ValueNotifier(false);
 var isSteamSelected = ValueNotifier(false);
-List<User> dummyUserList = [
-  User("1", "mail1", "name1", "username1"),
-  User("2", "mail1", "name1", "username1"),
-  User("3", "mail1", "name1", "username1"),
-  User("4", "mail1", "name1", "username1"),
-  User("5", "mail1", "name1", "username1"),
-  User("6", "mail1", "name1", "username1"),
-  User("7", "mail1", "name1", "username1"),
-  User("8", "mail1", "name1", "username1"),
-  User("9", "mail1", "name1", "username1"),
-];
+var currentUser;
 
 String spAuthCode = "";
 String userEmail = "";
@@ -82,9 +73,10 @@ String serverUrl = "127.0.0.1:8080";
 //-----------Spotiffy---------
 String spClientID = "f1c7433d34324ec5bd7edc2885ea0e5c";
 String spResponseType = "code";
-String spRedirectUrl = "http://127.0.0.1:8080/spauth";
+String spRedirectUrl = "https://managed-uaesyu2fxa-et.a.run.app/spauth";
 String spScope =
-    "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%user-library-read";
+    "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%20user-library-read";
 
 //-----------------------------------
 String spAuthUrl = "https://accounts.spotify.com/authorize";
+FirebaseAuth auth;
