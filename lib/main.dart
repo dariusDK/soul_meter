@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
@@ -5,30 +7,24 @@ import 'package:soul_meter/home_view/home_page_view.dart';
 import 'package:soul_meter/login_view/login_page_view.dart';
 
 void main() {
-  bool isAuthucanted = false;
-  runApp(MyApp());
+  Firebase.initializeApp().then((value) {
+    if (value != null) {
+      auth = FirebaseAuth.instanceFor(app: value);
+      runApp(MyApp());
+    } else
+      print("firebase bağlantısı kurulamadı.");
+  });
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: _initialization,
-        builder: (context, snapshot) {
-          return Application(
-            isAuth: false,
-          );
-        });
+    return Application();
   }
 }
 
 class Application extends StatelessWidget {
-  final bool isAuth;
-
-  const Application({Key key, this.isAuth}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,11 +32,23 @@ class Application extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primarySwatch,
       ),
-      home: isAuth ? HomePage() : LoginPage(), //değiş
+      home: MainPage(), //değiş
       routes: <String, WidgetBuilder>{
         "/login": (BuildContext context) => LoginPage(),
         "/home": (BuildContext context) => HomePage(),
       },
     );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User>(
+        stream: auth.authStateChanges(),
+        builder: (context, snapshot) {
+          return Container(
+              child: auth.currentUser != null ? HomePage() : LoginPage());
+        });
   }
 }
