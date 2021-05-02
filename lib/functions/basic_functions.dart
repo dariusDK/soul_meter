@@ -7,19 +7,16 @@ import 'dart:async';
 
 import 'package:soul_meter/constants/constants.dart';
 
-Future<bool> login(String email, String password) async {
-  bool result = false;
+Future<String> login(String email, String password) async {
+  String result = "";
   if (email.contains("@") && email.contains(".")) {
     //pop up benzeri gelelbilir hataları yazmak için
     if (password.length > 5) {
       userEmail = email;
       try {
-        currentUser = auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .onError((error, stackTrace) => null);
-        print("kullanıcı girişi başarılı");
-        result = true;
-      } on FirebaseAuthException {
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+      } on FirebaseAuthException catch (e) {
+        result = e.message;
         print("kullanıcı girişi başarısız");
       }
       //getUserStatus(email); bu fonksiyon urle düzeltildikten sonr aaçılacak
@@ -28,9 +25,9 @@ Future<bool> login(String email, String password) async {
   return result;
 }
 
-Future<bool> createAccount(String nickName, String email, String password,
+Future<String> createAccount(String nickName, String email, String password,
     String passwordAgain) async {
-  bool result = false;
+  String result = "";
   if (email.contains("@") && email.contains(".")) {
     print("mail");
     //pop up benzeri gelelbilir hataları yazmak için
@@ -38,34 +35,43 @@ Future<bool> createAccount(String nickName, String email, String password,
       print("pass");
       if (nickName.length > 3) {
         userName = nickName;
-        await createUserFirebase(email, password).then((value) =>
-            value ? result = true : print("kayıt veri tabanına eklenemedi"));
+        await createUserFirebase(email, password).then((value) => value.isEmpty
+            ? print("kayıt işlemi başarıyla tamamlandı")
+            : result = value);
       }
     }
   }
   return result;
 }
 
-Future<bool> createUserFirebase(String email, String password) async {
+Future<String> createUserFirebase(String email, String password) async {
   try {
-    currentUser = auth
+    await auth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) => FirebaseFirestore.instance
             .collection("user")
             .doc(value.user.email)
-            .set({"email": email, "user_name": userName}));
+            .set({"email": email, "user_name": userName}))
+        .onError((error, stackTrace) => throw error);
     print("kullanıcı başarıyla oluşturuldu");
 
-    return true;
-  } on FirebaseAuthException catch (e) {
+    return "";
+  } catch (e) {
+    print("kullanıcı oluşturulamadı");
     print(e.message);
-    return false;
+    return e.message;
   }
 }
 
-double rateFuction(String user1, String user2) {
+Future<double> rateFuction(String user1, String user2) async {
   //server a karşılaştıralacak verileri gönderip al
   //kaan- server get
+  // getfrom server metonudan sadece sayfasının adı ve parapetreleri gönder
+  // örnek olarak getFromServerMethod("getrate?email1=${user1}?email2=$user2")
+  double result;
+  await getFromServerMethod("getrate?email1=${user1}?email2=$user2")
+      .then((value) => result = value);
+  return result;
 }
 
 Future<String> getSpotifyData(String id) async {
@@ -74,17 +80,20 @@ Future<String> getSpotifyData(String id) async {
   return result.body;
 }
 
-Future<dynamic> getUserStatus(String userEmail) async {
-  dynamic states;
-  FirebaseFirestore.instance
+getUserStatus(String userEmail) async {
+  await FirebaseFirestore.instance
       .collection("user-status")
       .doc(userEmail)
       .get()
       .then((value) {
-    states = (value.data());
-    if (states != null) {
-      isSpotifySelected.value = states["sp_status"];
-      isSteamSelected.value = states["steam_status"];
+    states.value = value.data() == null ? {} : value.data();
+    if (states.value != null && states.value != {}) {
+      isSpotifySelected.value = states.value.containsKey("sp_status")
+          ? states.value["sp_status"]
+          : false;
+      isSteamSelected.value = states.value.containsKey("steam_status")
+          ? states.value["steam_status"]
+          : false;
     } else {
       print("states objesi boş döndü");
     }
