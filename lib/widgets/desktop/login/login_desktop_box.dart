@@ -69,27 +69,26 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                                       emailTextWidget.getText,
                                       passwordTextWidget.getText,
                                       passwordAgainTextWidget.getText)
-                                  .then((value) => value
+                                  .then((value) => value.isEmpty
                                       ? Navigator.pushNamed(context, "/")
-                                      : print(
-                                          "kullanıcı oluşturulması bekleniyor"));
+                                      : print(value));
                             } else {
                               login(emailTextWidget.getText,
                                       passwordTextWidget.getText)
-                                  .then((value) => value
+                                  .then((value) => value.isEmpty
                                       ? Navigator.pushNamed(context, "/home")
-                                      : print(
-                                          "kullanıcı girişi yapılması bekleniyor"));
+                                      : print(value));
                             }
                           },
                           style: defaultButtonDecoration,
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              print(auth.currentUser);
-                              print(_isCreateAccount);
+                              login("deneme@mail.com", "123456").whenComplete(
+                                  () =>
+                                      Navigator.of(context).pushNamed("/home"));
                             },
-                            child: Text("Current user print "))
+                            child: Text("Deneme Login "))
                       ],
                     ),
                     GestureDetector(

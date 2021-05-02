@@ -28,40 +28,35 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
           //mainAxisAlignment: MainAxisAlignment.end,
           children: [
             PopupMenuButton(
-              tooltip: "Log Out",
-              icon: Icon(Icons.clear_rounded),
-              offset: Offset(0, 58),
-              itemBuilder: (BuildContext bc) => [
-                PopupMenuItem(
-                  child: Row(
-                    children: [
-                      Icon(Icons.logout),
-                      Text("Log out"),
+                tooltip: "Log Out",
+                icon: Icon(Icons.clear_rounded),
+                offset: Offset(0, 58),
+                itemBuilder: (BuildContext bc) => [
+                      PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Icon(Icons.logout),
+                            Text("Log out"),
+                          ],
+                        ),
+                      ),
                     ],
-                  ),
-                ),
-              ],
-              onSelected: (route) {
-                ////tıklanınca logut yapsın kenks menks ve de cenks
-                Navigator.pushNamed(context, "/login");
-                print("içerdeyim");
-              },
-            ),
-            ValueListenableBuilder(
-                valueListenable: isSpotifySelected,
-                builder: (context, value, child) {
-                  return Visibility(visible: value, child: HomeAppbarButton());
+                onSelected: (route) {
+                  print("object");
+                  ////tıklanınca logut yapsın kenks menks ve de cenks
+                  auth.signOut().then((value) {
+                    Navigator.pushNamed(context, "/login");
+                    print("içerdeyim");
+                  });
                 }),
-            ValueListenableBuilder(
-                valueListenable: isSpotifySelected,
-                builder: (context, value, child) {
-                  return Visibility(visible: value, child: HomeAppbarButton());
-                }),
-            ValueListenableBuilder(
-                valueListenable: isSpotifySelected,
-                builder: (context, value, child) {
-                  return Visibility(visible: value, child: HomeAppbarButton());
-                }),
+            HomeAppbarButton("spotify-data"),
+            TextButton(
+                onPressed: () {
+                  auth.signOut().then((value) {
+                    Navigator.pushNamed(context, "/login");
+                  });
+                },
+                child: Text("Log Out"))
           ],
         ));
   }

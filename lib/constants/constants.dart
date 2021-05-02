@@ -80,3 +80,4 @@ String spScope =
 //-----------------------------------
 String spAuthUrl = "https://accounts.spotify.com/authorize";
 FirebaseAuth auth;
+ValueNotifier<Map<String, bool>> states = ValueNotifier({});
