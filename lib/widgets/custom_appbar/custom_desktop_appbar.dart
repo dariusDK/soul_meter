@@ -37,6 +37,7 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
                     children: [
                       Icon(Icons.logout),
                       Text("Log out"),
+                      
                     ],
                   ),
                 ),
