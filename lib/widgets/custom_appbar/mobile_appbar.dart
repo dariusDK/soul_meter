@@ -76,22 +76,15 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
           Divider(
             height: 30,
           ),
-          ExpansionTile(
-            leading: Icon(Icons.perm_device_information),
-            title: Text('Spotify'),
-            trailing: Icon(Icons.arrow_drop_down),
-            children: <Widget>[Text("Spotify Datas")],
-          ),
+          
           Visibility(
             visible: isSpotifySelected.value, // parametreye bağla
             child: ExpansionTile(
               leading: Icon(Icons.perm_device_information),
-              title: Text('Spotify'),
+              title: Text('Spotify Datas'),
               trailing: Icon(Icons.arrow_drop_down),
               children: <Widget>[
-                ApiButtonWidget("Spotify"),
-                ApiButtonWidget("Netflix"),
-                ApiButtonWidget("Steam"),
+              Text("Datas"),
               ],
             ),
           ),
