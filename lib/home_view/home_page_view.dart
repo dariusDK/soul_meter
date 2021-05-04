@@ -7,6 +7,9 @@ import 'package:soul_meter/home_view/home_page_view_desktop.dart';
 import 'package:soul_meter/home_view/home_page_view_mobile.dart';
 import 'package:soul_meter/widgets/custom_appbar/custom_mobile_side_bar.dart';
 import 'package:soul_meter/widgets/custom_appbar/drawer_mobile.dart';
+import 'package:soul_meter/widgets/custom_appbar/mobile_appbar.dart';
+
+import 'package:soul_meter/widgets/custom_appbar/mobile_appbar.dart';
 
 class HomePage extends StatefulWidget {
   /*HomePage() {
@@ -25,12 +28,12 @@ class _HomePageState extends State<HomePage> {
           builder: (context, snapshot) {
             snapshot.data != null ? getUserStatus(snapshot.data.email) : null;
             return Center(
-              child: MediaQuery.of(context).size.width < 600.0
-                  ? HomePageMobile()
-                  : HomePageDesktop(),
+              child: MediaQuery.of(context).size.width > 600.0
+                  ? HomePageDesktop()
+                  : MobileAppbar(),
             );
           }),
-      drawer: MediaQuery.of(context).size.width < 600.0 ? DrawerMobile() : null,
+      //appBar: MediaQuery.of(context).size.width < 600.0 ? MobileAppbar() : null,
     );
   }
 }

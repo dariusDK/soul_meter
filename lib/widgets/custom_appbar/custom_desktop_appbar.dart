@@ -28,18 +28,17 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
           //mainAxisAlignment: MainAxisAlignment.end,
           children: [
             PopupMenuButton(
-                tooltip: "Log Out",
-                icon: Icon(Icons.clear_rounded),
-                offset: Offset(0, 58),
-                itemBuilder: (BuildContext bc) => [
-                      PopupMenuItem(
-                        child: Row(
-                          children: [
-                            Icon(Icons.logout),
-                            Text("Log out"),
-                          ],
-                        ),
-                      ),
+              tooltip: "Log Out",
+              icon: Icon(Icons.clear_rounded),
+              offset: Offset(0, 58),
+              itemBuilder: (BuildContext bc) => [
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout),
+                      Text("Log out"),
+                      
+
                     ],
                 onSelected: (route) {
                   print("object");
