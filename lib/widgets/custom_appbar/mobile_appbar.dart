@@ -17,9 +17,9 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("hi")),
+      appBar: AppBar(title:  Text("Soul Meter",),centerTitle: true,),
       body: Center(child:  Container(
-      color: Colors.red,
+     
       child: Column(
         children: [
          
@@ -55,39 +55,57 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
               ],
             ),
           )),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Log-in Ekranına Dönüş'),
-            trailing: Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.pushNamed(context, "/");
-            },
-          ),
+         
           ExpansionTile(
-            leading: Icon(Icons.perm_device_information),
-            title: Text('Spotify'),
+            
+            leading: Image.asset("assets/images/ozan.ico"),
+            title: Text('Spotify',style: TextStyle(fontSize: 16),),
             trailing: Icon(Icons.arrow_drop_down),
             children: <Widget>[
               ApiButtonWidget("Spotify"),
+              Divider(
+            height: 30,
+            color:Colors.white30,
+          ),
               ApiButtonWidget("Netflix"),
+              Divider(
+                color:Colors.white30,
+            height: 30,
+          ),
               ApiButtonWidget("Steam"),
             ],
           ),
           Divider(
+            color:Colors.white30,
             height: 30,
           ),
           
           Visibility(
-            visible: isSpotifySelected.value, // parametreye bağla
+            visible: true, //isSpotifySelected.value, // parametreye bağla
             child: ExpansionTile(
-              leading: Icon(Icons.perm_device_information),
-              title: Text('Spotify Datas'),
+              leading: Icon(Icons.description,color: Colors.green,size: 48,),
+              title: Text('Spotify Datas',style: TextStyle(fontSize: 16),),
               trailing: Icon(Icons.arrow_drop_down),
               children: <Widget>[
               Text("Datas"),
               ],
             ),
           ),
+
+           
+         Divider(
+            color:Colors.white30,
+            height: 50,
+          ),
+           ListTile(
+            leading: Icon(Icons.logout,color: Colors.black,),
+            title: Text('Log-in Ekranına Dönüş'),
+            onTap: () {
+              Navigator.pushNamed(context, "/login");
+            },
+          ),
+        
+          
         ],
         ),
       ),
