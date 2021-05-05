@@ -76,8 +76,9 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                               login(emailTextWidget.getText,
                                       passwordTextWidget.getText)
                                   .then((value) => value.isEmpty
-                                      ? Navigator.pushNamed(context, "/home")
+                                      ? Navigator.pushNamed(context, "/")
                                       : print(value));
+                              
                             }
                           },
                           style: defaultButtonDecoration,
