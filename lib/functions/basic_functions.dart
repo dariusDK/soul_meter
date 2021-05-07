@@ -17,6 +17,10 @@ Future<String> login(String email, String password) async {
         await auth.signInWithEmailAndPassword(email: email, password: password);
       } on FirebaseAuthException catch (e) {
         result = e.message;
+        if (result ==
+            "There is no user record corresponding to this identifier. The user may have been deleted.") {
+          result = "A user registered to the mail address could not be found.";
+        }
         print("kullanıcı girişi başarısız");
       }
       //getUserStatus(email); bu fonksiyon urle düzeltildikten sonr aaçılacak
