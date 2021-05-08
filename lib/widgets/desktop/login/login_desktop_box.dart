@@ -79,12 +79,14 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                             } else {
                               login(emailTextWidget.getText,
                                       passwordTextWidget.getText)
+
                                   .then((value) async => value.isEmpty
                                       ? Navigator.pushNamed(context, "/")
                                       : await showDialog(
                                           context: context,
                                           builder: (context) =>
                                               ShowErrorDialog(value)));
+
                             }
                           },
                           style: defaultButtonDecoration,

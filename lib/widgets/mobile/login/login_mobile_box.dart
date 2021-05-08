@@ -40,8 +40,7 @@ class _LoginMobileBoxWidgetState extends State<LoginMobileBoxWidget> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 76),
-                        child: Text(loginButtonText,
-                            style: TextStyle(fontSize: 18)),
+                        child: Text(loginButtonText,style: TextStyle(fontSize: 18)),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 46),

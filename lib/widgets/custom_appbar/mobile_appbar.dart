@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/widgets/buttons/api_buttons.dart';
+import 'package:soul_meter/widgets/buttons/drawer_spoti_button.dart';
+import 'package:soul_meter/widgets/buttons/home_appbar_button.dart';
 import 'package:soul_meter/widgets/search/search_bar_mobile_box.dart';
 
 class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
@@ -17,9 +19,9 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("hi")),
+      appBar: AppBar(title:  Text("Soul Meter",),centerTitle: true,),
       body: Center(child:  Container(
-      color: Colors.red,
+     
       child: Column(
         children: [
          
@@ -37,58 +39,66 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
       ),
 
     ),),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-           
-            DrawerHeader(
-              child: Align(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Çakal Necmi Limited Company"),
-              ],
-            ),
-          )),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Log-in Ekranına Dönüş'),
-            trailing: Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.pushNamed(context, "/");
-            },
-          ),
-          ExpansionTile(
-            leading: Icon(Icons.perm_device_information),
-            title: Text('Spotify'),
-            trailing: Icon(Icons.arrow_drop_down),
-            children: <Widget>[
-              ApiButtonWidget("Spotify"),
-              ApiButtonWidget("Netflix"),
-              ApiButtonWidget("Steam"),
-            ],
-          ),
-          Divider(
-            height: 30,
-          ),
+      drawer: Theme(data: Theme.of(context).copyWith(
+                 canvasColor: Colors.greenAccent[50], //This will change the drawer background to blue.
+                 //other styles
+              ),
+              child: Drawer(
           
-          Visibility(
-            visible: isSpotifySelected.value, // parametreye bağla
-            child: ExpansionTile(
-              leading: Icon(Icons.perm_device_information),
-              title: Text('Spotify Datas'),
-              trailing: Icon(Icons.arrow_drop_down),
-              children: <Widget>[
-              Text("Datas"),
-              ],
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+          
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+             
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+            image: AssetImage("assets/images/Logomuz.png"),
+            fit: BoxFit.scaleDown,
+          ),),
+                child: Align(
+               
+              child: Column(
+                
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  //Image.asset("images/Logomuz.png",scale: 1,),
+                  
+                ],
+              ),
+            )),
+           
+
+              ApiButtonWidget("Spotify"),
+
+               Divider(
+              color:Colors.white,
+              height: 20,
             ),
+
+               DrawerspotiButton("spotify-data"),
+
+             
+           Divider(
+              color:Colors.white,
+              height: 50,
+            ),
+             ListTile(
+              leading: Icon(Icons.logout,color: Colors.black,),
+              title: Text('Log-out'),
+              tileColor: Colors.white30,
+              onTap: () {
+                Navigator.pushNamed(context, "/login");
+              },
+            ),
+          
+            
+          ],
           ),
-        ],
         ),
       ),
     );
