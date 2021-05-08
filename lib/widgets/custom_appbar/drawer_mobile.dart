@@ -4,6 +4,7 @@ import 'package:soul_meter/functions/api_functions.dart';
 import 'package:soul_meter/widgets/api_box/api_desktop_box.dart';
 import 'package:soul_meter/widgets/buttons/api_buttons.dart';
 import 'package:soul_meter/widgets/buttons/api_buttons.dart';
+import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
 class DrawerMobile extends StatefulWidget {
   @override
@@ -62,6 +63,7 @@ class _DrawerMobileState extends State<DrawerMobile> {
                 ApiButtonWidget("Spotify"),
                 ApiButtonWidget("Netflix"),
                 ApiButtonWidget("Steam"),
+                LoadingBox(),
               ],
             ),
           ),
