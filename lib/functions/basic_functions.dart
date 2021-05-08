@@ -17,6 +17,10 @@ Future<String> login(String email, String password) async {
         await auth.signInWithEmailAndPassword(email: email, password: password);
       } on FirebaseAuthException catch (e) {
         result = e.message;
+        if (result ==
+            "There is no user record corresponding to this identifier. The user may have been deleted.") {
+          result = "A user registered to the mail address could not be found.";
+        }
         print("kullanıcı girişi başarısız");
       }
       //getUserStatus(email); bu fonksiyon urle düzeltildikten sonr aaçılacak
@@ -28,19 +32,38 @@ Future<String> login(String email, String password) async {
 Future<String> createAccount(String nickName, String email, String password,
     String passwordAgain) async {
   String result = "";
+  var emailValid = false;
+  var passwordValid = false;
+  var nicknameValid = false;
   if (email.contains("@") && email.contains(".")) {
     print("mail");
-    //pop up benzeri gelelbilir hataları yazmak için
-    if (password.length > 5 && password == passwordAgain) {
-      print("pass");
-      if (nickName.length > 3) {
-        userName = nickName;
-        await createUserFirebase(email, password).then((value) => value.isEmpty
-            ? print("kayıt işlemi başarıyla tamamlandı")
-            : result = value);
-      }
-    }
+    emailValid = true;
   }
+  if (password.length > 5 && password == passwordAgain) {
+    print("pass");
+    passwordValid = true;
+  }
+  if (nickName.length > 3) {
+    userName = nickName;
+    nicknameValid = true;
+  }
+  if (nicknameValid == true && passwordValid == true && emailValid == true) {
+    await createUserFirebase(email, password).then((value) => value.isEmpty
+        ? print("kayıt işlemi başarıyla tamamlandı")
+        : result = value);
+  }
+  if (!nicknameValid) {
+    result += "Nickname must be at least 4 character" + "\n";
+  }
+  if (!passwordValid) {
+    result +=
+        "Password must be at least 6 character and passwords should be matched" +
+            "\n";
+  }
+  if (!emailValid) {
+    result += "Invalid email" + "\n";
+  }
+
   return result;
 }
 
@@ -117,5 +140,17 @@ Future<dynamic> getFromServerMethod(String path) async {
         ))
         .then((value) => result = jsonDecode((value.body)));
   }
+  return result;
+}
+
+String getSpotifyBasicData(Map<String, dynamic> data) {
+  String result;
+
+  result = "Name: " + data['name'] + "\n";
+  result += "Country: " + data['country'] + "\n";
+  result += "Current Top Artist: " + data['current_top_artist'] + "\n";
+  result += "Total Followers: " + data['num_followers'].toString() + "\n";
+  result += "Product: " + data['product'] + "\n";
+
   return result;
 }

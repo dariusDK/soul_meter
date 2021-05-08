@@ -41,7 +41,11 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  child: Text(snapshot.data.data()["user_access_token"].containsKey("access_token")
+
+                  child: Text(snapshot.data
+                          .data()["user_access_token"]
+                          .containsKey("access_token")
+
                       ? "Spotify"
                       : "Connect Spotify!"),
                   style: ElevatedButton.styleFrom(
@@ -56,7 +60,11 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
                   },
                 ),
                 Visibility(
-                    visible: snapshot.data.data()["user_access_token"].containsKey("access_token"),
+
+                    visible: snapshot.data
+                        .data()["user_access_token"]
+                        .containsKey("access_token"),
+
                     child: Checkbox(
                         value: snapshot.data.data()["status"],
                         checkColor: Colors.white,
