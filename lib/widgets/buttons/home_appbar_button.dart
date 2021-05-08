@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/functions/basic_functions.dart';
 
 class HomeAppbarButton extends StatelessWidget {
   final String collectionPath;
@@ -21,7 +22,8 @@ class HomeAppbarButton extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Tooltip(
-                    message: 'Spotify Datas',
+                    message: getSpotifyBasicData(
+                        snapshot.data.data()['spotify_basic_data']),
                     child: Text(
                       'Spotify',
                       style: TextStyle(
@@ -30,9 +32,9 @@ class HomeAppbarButton extends StatelessWidget {
                           fontSize: 0.035 * MediaQuery.of(context).size.height),
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
+                      borderRadius: BorderRadius.circular(15),
                       gradient: LinearGradient(
-                          colors: <Color>[Colors.red, Colors.amber]),
+                          colors: <Color>[Colors.grey, Colors.blueGrey]),
                     ),
                     height: 150,
                     margin: EdgeInsets.all(30.0),
