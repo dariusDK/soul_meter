@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
 class DrawerspotiButton extends StatelessWidget {
   final String collectionPath;
@@ -32,7 +33,7 @@ class DrawerspotiButton extends StatelessWidget {
               ],)
             );
           }
-          return Text("Fetcing datas");
+          return LoadingBox();
         });
   }
 }

@@ -6,7 +6,7 @@ import 'package:soul_meter/home_view/home_page_view_desktop.dart';
 
 import 'package:soul_meter/home_view/home_page_view_mobile.dart';
 import 'package:soul_meter/widgets/custom_appbar/custom_mobile_side_bar.dart';
-import 'package:soul_meter/widgets/custom_appbar/drawer_mobile.dart';
+
 import 'package:soul_meter/widgets/custom_appbar/mobile_appbar.dart';
 
 import 'package:soul_meter/widgets/custom_appbar/mobile_appbar.dart';

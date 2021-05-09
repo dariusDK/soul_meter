@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
+import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
 class HomeAppbarButton extends StatelessWidget {
   final String collectionPath;
@@ -22,7 +23,7 @@ class HomeAppbarButton extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Tooltip(
-                    message: getSpotifyBasicData(
+                    message:!snapshot.data.data()["status"]?"not available": getSpotifyBasicData(
                         snapshot.data.data()['spotify_basic_data']),
                     child: Text(
                       'Spotify',
@@ -48,7 +49,7 @@ class HomeAppbarButton extends StatelessWidget {
               ),
             );
           }
-          return Text("Fetcing datas");
+          return LoadingBox();
         });
   }
 }

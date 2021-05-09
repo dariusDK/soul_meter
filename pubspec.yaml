@@ -21,10 +21,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  loading_animations: ^2.2.0
   flutter:
     sdk: flutter
-  
+
   firebase_core: ^1.0.4
   cloud_firestore: ^1.0.6
   firebase_auth: ^1.1.1
