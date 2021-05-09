@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/api_functions.dart';
+import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
 class ApiButtonWidget extends StatefulWidget {
   final String title;
@@ -34,7 +35,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
             return Text("Error occured");
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("loading");
+            return LoadingBox();
           }
           return Container(
             child: Row(
@@ -43,6 +44,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
                 ElevatedButton(
 
                   child: Text(snapshot.data
+                          
                           .data()["user_access_token"]
                           .containsKey("access_token")
 

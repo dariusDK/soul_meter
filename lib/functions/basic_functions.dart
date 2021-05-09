@@ -17,15 +17,27 @@ Future<String> login(String email, String password) async {
         await auth.signInWithEmailAndPassword(email: email, password: password);
       } on FirebaseAuthException catch (e) {
         result = e.message;
+        print(result);
         if (result ==
             "There is no user record corresponding to this identifier. The user may have been deleted.") {
           result = "A user registered to the mail address could not be found.";
         }
+      if(result=="Invalid e-mail or password"){
+        result="Invalid e-mail or password";
+      }
         print("kullanıcı girişi başarısız");
       }
       //getUserStatus(email); bu fonksiyon urle düzeltildikten sonr aaçılacak
     }
+    else{
+      result="Invalid e-mail or password";
+    }
   }
+  else{
+   result="Invalid e-mail or password";
+
+  }
+  
   return result;
 }
 
@@ -74,7 +86,13 @@ Future<String> createUserFirebase(String email, String password) async {
         .then((value) => FirebaseFirestore.instance
             .collection("user")
             .doc(value.user.email)
-            .set({"email": email, "user_name": userName}))
+            .set({"email": email, "user_name": userName})
+            .whenComplete(() => FirebaseFirestore.instance
+            .collection("spotify-data")
+            .doc(value.user.email)
+            .set({"user_access_token":{"error":"not avalible"},
+            "spotify_basic_data":{"error":"not avalible"},
+            "status":false})))
         .onError((error, stackTrace) => throw error);
     print("kullanıcı başarıyla oluşturuldu");
 

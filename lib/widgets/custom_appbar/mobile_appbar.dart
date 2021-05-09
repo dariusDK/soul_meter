@@ -4,6 +4,7 @@ import 'package:soul_meter/widgets/buttons/api_buttons.dart';
 import 'package:soul_meter/widgets/buttons/drawer_spoti_button.dart';
 import 'package:soul_meter/widgets/buttons/home_appbar_button.dart';
 import 'package:soul_meter/widgets/search/search_bar_mobile_box.dart';
+import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
 class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -72,7 +73,7 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
               ),
             )),
            
-
+LoadingBox(),
               ApiButtonWidget("Spotify"),
 
                Divider(
@@ -92,7 +93,9 @@ class MobileAppbar extends StatefulWidget implements PreferredSizeWidget {
               title: Text('Log-out'),
               tileColor: Colors.white30,
               onTap: () {
+              auth.signOut();
                 Navigator.pushNamed(context, "/login");
+
               },
             ),
           
