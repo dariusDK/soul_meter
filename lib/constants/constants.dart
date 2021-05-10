@@ -73,9 +73,9 @@ String serverUrl = "127.0.0.1:8080";
 //-----------Spotiffy---------
 String spClientID = "f1c7433d34324ec5bd7edc2885ea0e5c";
 String spResponseType = "code";
-String spRedirectUrl = "https://managed-uaesyu2fxa-et.a.run.app/spauth";
+String spRedirectUrl = "http://127.0.0.1:8080/spauth";
 String spScope =
-    "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%20user-library-read";
+    "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%20user-library-read%20playlist-read-private%20playlist-read-collaborative";
 
 //-----------------------------------
 String spAuthUrl = "https://accounts.spotify.com/authorize";

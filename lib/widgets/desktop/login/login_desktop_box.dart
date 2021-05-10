@@ -79,14 +79,12 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                             } else {
                               login(emailTextWidget.getText,
                                       passwordTextWidget.getText)
-
                                   .then((value) async => value.isEmpty
                                       ? Navigator.pushNamed(context, "/")
                                       : await showDialog(
                                           context: context,
                                           builder: (context) =>
                                               ShowErrorDialog(value)));
-
                             }
                           },
                           style: defaultButtonDecoration,
@@ -111,7 +109,7 @@ class _LoginBoxWidgetState extends State<LoginBoxWidget> {
                         setState(() {
                           _isCreateAccount = !_isCreateAccount;
                           createSituation =
-                              _isCreateAccount ? "Login" : "Create Account";
+                              !_isCreateAccount ? "Login" : "Create Account";
                           situation =
                               !_isCreateAccount ? "Login" : "Create Account";
                           loginButtonText =

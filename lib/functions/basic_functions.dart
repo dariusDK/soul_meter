@@ -22,22 +22,19 @@ Future<String> login(String email, String password) async {
             "There is no user record corresponding to this identifier. The user may have been deleted.") {
           result = "A user registered to the mail address could not be found.";
         }
-      if(result=="Invalid e-mail or password"){
-        result="Invalid e-mail or password";
-      }
+        if (result == "Invalid e-mail or password") {
+          result = "Invalid e-mail or password";
+        }
         print("kullanıcı girişi başarısız");
       }
       //getUserStatus(email); bu fonksiyon urle düzeltildikten sonr aaçılacak
+    } else {
+      result = "Invalid e-mail or password";
     }
-    else{
-      result="Invalid e-mail or password";
-    }
+  } else {
+    result = "Invalid e-mail or password";
   }
-  else{
-   result="Invalid e-mail or password";
 
-  }
-  
   return result;
 }
 
@@ -60,9 +57,15 @@ Future<String> createAccount(String nickName, String email, String password,
     nicknameValid = true;
   }
   if (nicknameValid == true && passwordValid == true && emailValid == true) {
-    await createUserFirebase(email, password).then((value) => value.isEmpty
-        ? print("kayıt işlemi başarıyla tamamlandı")
-        : result = value);
+    await createUserFirebase(email, password).then((value) {
+      value.isEmpty
+          ? print("kayıt işlemi başarıyla tamamlandı")
+          : result = value;
+      FirebaseFirestore.instance
+          .collection('user-names')
+          .doc(nickName)
+          .set({'email': email});
+    });
   }
   if (!nicknameValid) {
     result += "Nickname must be at least 4 character" + "\n";
@@ -86,13 +89,15 @@ Future<String> createUserFirebase(String email, String password) async {
         .then((value) => FirebaseFirestore.instance
             .collection("user")
             .doc(value.user.email)
-            .set({"email": email, "user_name": userName})
-            .whenComplete(() => FirebaseFirestore.instance
-            .collection("spotify-data")
-            .doc(value.user.email)
-            .set({"user_access_token":{"error":"not avalible"},
-            "spotify_basic_data":{"error":"not avalible"},
-            "status":false})))
+            .set({"email": email, "user_name": userName}).whenComplete(() =>
+                FirebaseFirestore.instance
+                    .collection("spotify-data")
+                    .doc(value.user.email)
+                    .set({
+                  "user_access_token": {"error": "not avalible"},
+                  "spotify_basic_data": {"error": "not avalible"},
+                  "status": false
+                })))
         .onError((error, stackTrace) => throw error);
     print("kullanıcı başarıyla oluşturuldu");
 
