@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/functions/basic_functions.dart';
 
 class SearchBarDesktop extends StatefulWidget {
   @override
@@ -26,6 +29,14 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
               padding: EdgeInsets.only(left: 16),
               child: !_folded
                   ? TextField(
+                      onSubmitted: (nickName) {
+                        FirebaseFirestore.instance
+                            .collection("user-names")
+                            .doc(nickName)
+                            .get()
+                            .then((value) =>
+                                rateFuction(userEmail, value["email"]));
+                      },
                       decoration: InputDecoration(
                           hintText: 'Search',
                           hintStyle: TextStyle(color: Colors.blue[300]),

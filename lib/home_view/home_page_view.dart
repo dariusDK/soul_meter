@@ -26,7 +26,11 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder<User>(
           stream: auth.authStateChanges(),
           builder: (context, snapshot) {
-            snapshot.data != null ? getUserStatus(snapshot.data.email) : null;
+            if (snapshot.data != null) {
+              userEmail = snapshot.data.email;
+              getUserStatus(snapshot.data.email);
+            }
+
             return Center(
               child: MediaQuery.of(context).size.width > 600.0
                   ? HomePageDesktop()
