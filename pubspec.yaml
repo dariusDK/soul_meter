@@ -59,6 +59,8 @@ flutter:
     - assets/images/ozan.ico
     - assets/images/spoti.png
     - assets/images/Logomuz.png
+    - assets/images/steam.png
+    
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

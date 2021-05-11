@@ -87,17 +87,12 @@ Future<String> createUserFirebase(String email, String password) async {
     await auth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) => FirebaseFirestore.instance
-            .collection("user")
-            .doc(value.user.email)
-            .set({"email": email, "user_name": userName}).whenComplete(() =>
-                FirebaseFirestore.instance
-                    .collection("spotify-data")
-                    .doc(value.user.email)
-                    .set({
-                  "user_access_token": {"error": "not avalible"},
-                  "spotify_basic_data": {"error": "not avalible"},
-                  "status": false
-                })))
+                .collection("user")
+                .doc(value.user.email)
+                .set({"email": email, "user_name": userName}).whenComplete(() {
+              createDefaultSpotifyUser(value.user);
+              createDefaultSteamUser(value.user);
+            }))
         .onError((error, stackTrace) => throw error);
     print("kullanıcı başarıyla oluşturuldu");
 
@@ -107,6 +102,53 @@ Future<String> createUserFirebase(String email, String password) async {
     print(e.message);
     return e.message;
   }
+}
+
+Future<String> createDefaultSteamUser(User user) async {
+  String result = "";
+  try {
+    await FirebaseFirestore.instance
+        .collection("steam-data")
+        .doc(user.email)
+        .set({
+      "basic_data": {"error": "not avalible"},
+      "status": false
+    }).onError((error, stackTrace) => throw error);
+  } catch (e) {
+    result = e.message;
+  }
+  return result;
+}
+
+Future<String> saveSteamUrlToDB(String url) async {
+  String result = "";
+  try {
+    await FirebaseFirestore.instance
+        .collection("steam-data")
+        .doc(auth.currentUser.email)
+        .update({"profile_link": url, "status": true}).onError(
+            (error, stackTrace) => throw error);
+  } catch (e) {
+    result = e.message;
+  }
+  return result;
+}
+
+Future<String> createDefaultSpotifyUser(User user) async {
+  String result = "";
+  try {
+    await FirebaseFirestore.instance
+        .collection("spotify-data")
+        .doc(user.email)
+        .set({
+      "user_access_token": {"error": "not avalible"},
+      "spotify_basic_data": {"error": "not avalible"},
+      "status": false
+    }).onError((error, stackTrace) => throw error);
+  } catch (e) {
+    result = e.message;
+  }
+  return result;
 }
 
 Future<double> rateFuction(String user1, String user2) async {
