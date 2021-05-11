@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soul_meter/widgets/buttons/api_buttons.dart';
+import 'package:soul_meter/widgets/buttons/spotify_api_button.dart';
 
 class ApiMobileBox extends StatefulWidget {
   @override
@@ -15,11 +15,7 @@ class _ApiMobileBoxState extends State<ApiMobileBox> {
       height: MediaQuery.of(context).size.height / 3, //500
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ApiButtonWidget("allah"),
-          ApiButtonWidget("kitap"),
-          ApiButtonWidget("muhammed"),
-        ],
+        children: [],
       ),
     );
   }

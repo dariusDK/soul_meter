@@ -5,23 +5,25 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/api_functions.dart';
+import 'package:soul_meter/widgets/alert_box/error_box_alert.dart';
+import 'package:soul_meter/widgets/alert_box/steam_link_input.dart';
 import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
-class ApiButtonWidget extends StatefulWidget {
+class SteamApiButtonWidget extends StatefulWidget {
   String title;
 
-  ApiButtonWidget(String title) {
+  SteamApiButtonWidget(String title) {
     this.title = title;
   }
 
   @override
-  _ApiButtonWidgetState createState() => _ApiButtonWidgetState();
+  _SteamApiButtonWidgetState createState() => _SteamApiButtonWidgetState();
 }
 
-class _ApiButtonWidgetState extends State<ApiButtonWidget> {
+class _SteamApiButtonWidgetState extends State<SteamApiButtonWidget> {
   String mail = auth.currentUser.email;
   DocumentReference docRef = FirebaseFirestore.instance
-      .collection("spotify-data")
+      .collection("steam-data")
       .doc(auth.currentUser.email);
 
   @override
@@ -37,22 +39,18 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
             return LoadingBox();
           }
 
-          widget.title = snapshot.data
-                  .data()["user_access_token"]
-                  .containsKey("access_token")
-              ? "Spotify"
-              : "Connect Spotify!";
+          widget.title = snapshot.data.data().containsKey("profile_link")
+              ? "Steam"
+              : "Connect Steam!";
           if (snapshot.hasData) {
             return Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    child: Text(snapshot.data
-                            .data()["user_access_token"]
-                            .containsKey("access_token")
-                        ? "Spotify"
-                        : "Connect Spotify!"),
+                    child: Text(snapshot.data.data().containsKey("profile_link")
+                        ? "Steam"
+                        : "Connect Steam!"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green,
                       shape: RoundedRectangleBorder(
@@ -65,9 +63,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
                     },
                   ),
                   Visibility(
-                      visible: snapshot.data
-                          .data()["user_access_token"]
-                          .containsKey("access_token"),
+                      visible: snapshot.data.data().containsKey("profile_link"),
                       child: Checkbox(
                           value: snapshot.data.data()["status"],
                           checkColor: Colors.white,
@@ -78,7 +74,7 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
                               newData["status"] = value;
 
                               FirebaseFirestore.instance
-                                  .collection("spotify-data")
+                                  .collection("steam-data")
                                   .doc(auth.currentUser.email)
                                   .set(newData);
                             }
@@ -92,12 +88,14 @@ class _ApiButtonWidgetState extends State<ApiButtonWidget> {
   }
 
   Future<bool> isAuthCompleted(String title) async {
-    if (title == "Connect Spotify!") {
-      getSpotifyAuthCode();
-      isSpotifySelected.value = !isSpotifySelected.value;
+    if (title == "Connect Steam!") {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return SteamLinkInputWidget();
+          });
+      isSteamSelected.value = !isSteamSelected.value;
       return true;
     }
-    if (title == "Netflix") {}
-    if (title == "Steam") {}
   }
 }

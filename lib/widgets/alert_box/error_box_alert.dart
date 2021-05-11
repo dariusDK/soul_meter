@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ShowErrorDialog extends StatelessWidget {
-  final value;
+  final String value;
   ShowErrorDialog(this.value);
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/widgets/buttons/home_appbar_button.dart';
+import 'package:soul_meter/widgets/buttons/spotify_home_appbar_button.dart';
+import 'package:soul_meter/widgets/buttons/steam_home_appbar_button.dart';
 
 class CustomDesktopAppBar extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
           //mainAxisAlignment: MainAxisAlignment.end,
           children: [
             PopupMenuButton(
-             tooltip: "Log Out",
+                tooltip: "Log Out",
                 icon: Icon(Icons.clear_rounded),
                 offset: Offset(0, 58),
                 itemBuilder: (BuildContext bc) => [
@@ -40,7 +41,6 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
                           ],
                         ),
                       ),
-
                     ],
                 onSelected: (route) {
                   print("object");
@@ -50,7 +50,8 @@ class _CustomDesktopAppBarState extends State<CustomDesktopAppBar> {
                     print("içerdeyim");
                   });
                 }),
-            HomeAppbarButton("spotify-data"),
+            SpotifyHomeAppbarButton("spotify-data"),
+            SteamHomeAppbarButton("steam-data"),
             TextButton(
                 onPressed: () {
                   auth.signOut().then((value) {

@@ -4,9 +4,9 @@ import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
 import 'package:soul_meter/widgets/loading_box/loading_box.dart';
 
-class HomeAppbarButton extends StatelessWidget {
+class SpotifyHomeAppbarButton extends StatelessWidget {
   final String collectionPath;
-  HomeAppbarButton(this.collectionPath);
+  SpotifyHomeAppbarButton(this.collectionPath);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,10 @@ class HomeAppbarButton extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Tooltip(
-                    message:!snapshot.data.data()["status"]?"not available": getSpotifyBasicData(
-                        snapshot.data.data()['spotify_basic_data']),
+                    message: !snapshot.data.data()["status"]
+                        ? "not available"
+                        : getSpotifyBasicData(
+                            snapshot.data.data()['spotify_basic_data']),
                     child: Text(
                       'Spotify',
                       style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/widgets/buttons/api_buttons.dart';
+import 'package:soul_meter/widgets/buttons/spotify_api_button.dart';
+import 'package:soul_meter/widgets/buttons/steam_api_button.dart';
 
 class ApiDesktopBox extends StatefulWidget {
   @override
@@ -17,7 +18,8 @@ class _ApiDesktopBoxState extends State<ApiDesktopBox> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ApiButtonWidget("Spotify"),
+            SpotifyApiButtonWidget("Spotify"),
+            SteamApiButtonWidget("Steam")
           ],
         ));
   }
