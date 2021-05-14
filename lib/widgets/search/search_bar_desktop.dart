@@ -38,7 +38,7 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
                             .then((value) {
                           print(value);
                           rateFuction(
-                              auth.currentUser.email, value.data()["email"]).then((value) => showDialog(context: context, builder: (context)=>ShowErrorDialog(value)))
+                              auth.currentUser.email, value.data()["email"]);
                         });
                       },
                       decoration: InputDecoration(
