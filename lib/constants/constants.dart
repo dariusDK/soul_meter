@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:soul_meter/user/user.dart';
 
 ///      Dev Mode
-bool isLocal = true;
+bool isLocal = false;
 
 /// canlıya geçince değiştir
 const primarySwatch = Colors.blue;
@@ -63,17 +63,20 @@ PopupMenuItem appBarMenuItem = PopupMenuItem(
 var isSpotifySelected = ValueNotifier(false);
 var isNetflixSelected = ValueNotifier(false);
 var isSteamSelected = ValueNotifier(false);
+var rateResult = ValueNotifier(0.0);
+var isRatingOver = ValueNotifier(false);
+var isRatingStart = ValueNotifier(false);
 var currentUser;
 
 String spAuthCode = "";
 String userEmail = "";
 String userName = "";
-String serverUrl = "127.0.0.1:8080";
+String serverUrl = "managed-uaesyu2fxa-et.a.run.app";
 
 //-----------Spotiffy---------
 String spClientID = "f1c7433d34324ec5bd7edc2885ea0e5c";
 String spResponseType = "code";
-String spRedirectUrl = "http://127.0.0.1:8080/spauth";
+String spRedirectUrl = " https://managed-uaesyu2fxa-et.a.run.app/spauth";
 String spScope =
     "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%20user-library-read%20playlist-read-private%20playlist-read-collaborative";
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -157,15 +158,27 @@ Future<double> rateFuction(String user1, String user2) async {
   // getfrom server metonudan sadece sayfasının adı ve parapetreleri gönder
   // örnek olarak getFromServerMethod("getrate?email1=${user1}?email2=$user2")
   double result;
-  await getFromServerMethod("getrate?email1=${user1}?email2=$user2")
-      .then((value) => result = value);
+  isRatingStart.value = true;
+  isRatingOver.value = false;
+  print("user1 $user1 user2 $user2");
+  await getFromServerMethod("/getrate", {"email1": user1, "email2": user2})
+      .then((value) {
+    rateResult.value = value["result"] as double;
+    result = rateResult.value;
+    isRatingOver.value = true;
+  });
   return result;
 }
 
-Future<String> getSpotifyData(String id) async {
-  var result = await http.get(
-      Uri.http("localhost:8080", "/deneme")); // kaan server da aç ve bağlan
-  return result.body;
+Future<dynamic> getFromServerMethod(
+    String path, Map<String, String> params) async {
+  var result;
+
+  await http.get(Uri.https(serverUrl, path, params), headers: {
+    HttpHeaders.allowHeader: "*",
+  }).then((value) => result = jsonDecode((value.body)));
+
+  return result;
 }
 
 getUserStatus(String userEmail) async {
@@ -186,26 +199,6 @@ getUserStatus(String userEmail) async {
       print("states objesi boş döndü");
     }
   });
-}
-
-Future<dynamic> getFromServerMethod(String path) async {
-  var result;
-  if (isLocal) {
-    await http
-        .get(Uri.http(
-          serverUrl,
-          path,
-        ))
-        .then((value) => result = jsonDecode((value.body)));
-  } else {
-    await http
-        .get(Uri.https(
-          serverUrl,
-          path,
-        ))
-        .then((value) => result = jsonDecode((value.body)));
-  }
-  return result;
 }
 
 String getSpotifyBasicData(Map<String, dynamic> data) {

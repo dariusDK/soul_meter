@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
+import 'package:soul_meter/widgets/alert_box/error_box_alert.dart';
 
 class SearchBarDesktop extends StatefulWidget {
   @override
@@ -34,8 +35,11 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
                             .collection("user-names")
                             .doc(nickName)
                             .get()
-                            .then((value) =>
-                                rateFuction(userEmail, value["email"]));
+                            .then((value) {
+                          print(value);
+                          rateFuction(
+                              auth.currentUser.email, value.data()["email"]).then((value) => showDialog(context: context, builder: (context)=>ShowErrorDialog(value)))
+                        });
                       },
                       decoration: InputDecoration(
                           hintText: 'Search',
