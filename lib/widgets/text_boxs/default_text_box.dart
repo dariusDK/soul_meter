@@ -11,14 +11,28 @@ class DefaultTextBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 50, right: 50, top: 5, bottom: 10),
+      height:MediaQuery.of(context).size.width*MediaQuery.of(context).size.height/20000  ,
+      width: MediaQuery.of(context).size.width*MediaQuery.of(context).size.height/5000,
+      //color: Colors.red,
+      padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 10),
       child: TextField(
+        style: TextStyle(color: Colors.white,fontSize: MediaQuery.of(context).size.width*MediaQuery.of(context).size.height/80000),
         obscureText: this.isPassword,
         decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+            focusedBorder: OutlineInputBorder(
+
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: Color(0xFFccb0be))),
+            labelStyle: TextStyle(color: Colors.white),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
             labelText: this.title,
-            prefixIcon: Icon(this.icon),
-            fillColor: Colors.grey[100],
+            prefixIcon: Icon(
+              this.icon,
+              color: Color(0xFF67525c),
+            ),
+            //fillColor: Colors.grey[700],
             filled: true),
         controller: textEditingController,
       ),

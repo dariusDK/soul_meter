@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:soul_meter/user/user.dart';
 
 ///      Dev Mode
 bool isLocal = false;
@@ -66,6 +65,11 @@ var isSteamSelected = ValueNotifier(false);
 var rateResult = ValueNotifier(0.0);
 var isRatingOver = ValueNotifier(false);
 var isRatingStart = ValueNotifier(false);
+var isGetStartedSelected = ValueNotifier(false);
+var isSpoti = ValueNotifier(true);
+var isSteam = ValueNotifier(true);
+ScrollController scrollController = ScrollController();
+
 var currentUser;
 
 String spAuthCode = "";
@@ -84,3 +88,45 @@ String spScope =
 String spAuthUrl = "https://accounts.spotify.com/authorize";
 FirebaseAuth auth;
 ValueNotifier<Map<String, bool>> states = ValueNotifier({});
+
+var backgroundImage = BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage("assets/images/bg1.png"), fit: BoxFit.cover));
+
+var backgroundImage2 = BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage("assets/images/bg2.png"), fit: BoxFit.cover));
+var backgroundImage3 = BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage("assets/images/space2.jpg"), fit: BoxFit.cover));
+
+Text homePageHeader = Text(
+  "SoulMeter",
+  style: TextStyle(fontSize: 50),
+);
+
+Text homePageStatement = Text(
+  "1 step away to find your soulmate",
+  style: TextStyle(fontSize: 30),
+);
+
+ScrollController controller = ScrollController();
+
+var spotifyButtonDecoration = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF358619)),
+    minimumSize: MaterialStateProperty.all<Size>(Size(400, 50)),
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(24),
+      ),
+    )));
+
+var getStartedButtonDecoration = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF204f70)),
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(70),
+      ),
+    )));

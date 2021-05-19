@@ -1,7 +1,6 @@
 import 'dart:js' as js;
 
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/functions/basic_functions.dart';
 
 Future<bool> getSpotifyAuthCode() async {
   print("email = " + userEmail);
