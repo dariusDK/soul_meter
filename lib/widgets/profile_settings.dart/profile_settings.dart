@@ -1,21 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/functions/basic_functions.dart';
-import 'package:soul_meter/widgets/dialogs/error_dialog.dart';
 import 'package:soul_meter/widgets/text_boxs/default_text_box.dart';
 
-class CreateTab extends StatelessWidget {
+class ProfileSettingsWidget extends StatelessWidget {
   final emailTextWidget = DefaultTextBoxWidget("e-mail", Icons.mail, false);
   final passwordTextWidget = DefaultTextBoxWidget("password", Icons.lock, true);
   final nickNameTextWidget =
       DefaultTextBoxWidget("nick name", Icons.account_box, false);
   final passwordAgainTextWidget =
       DefaultTextBoxWidget("password again", Icons.lock, true);
-  bool _isCreateAccount = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      /*padding: EdgeInsets.only(
+        left: 30,
+        right: 30,
+      ),*/
+      child: Container(
+          child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
@@ -44,21 +48,14 @@ class CreateTab extends StatelessWidget {
             child: ElevatedButton(
                 style: defaultButtonDecoration,
                 onPressed: () {
-                  createAccount(
-                          nickNameTextWidget.getText,
-                          emailTextWidget.getText,
-                          passwordTextWidget.getText,
-                          passwordAgainTextWidget.getText)
-                      .then((value) async => value.isEmpty
-                          ? Navigator.pushNamed(context, "/")
-                          : await showDialog(
-                              context: context,
-                              builder: (context) => ShowErrorDialog(value)));
+                  auth.signOut().then((value) {
+                    isGetStartedSelected.notifyListeners();
+                  });
                 },
-                child: Text("Create Account")),
+                child: Text("Log Out")),
           ),
         ],
-      ),
+      )),
     );
   }
 }

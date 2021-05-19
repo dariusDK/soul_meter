@@ -37,8 +37,6 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
                             .get()
                             .then((value) =>
                                 rateFuction(userEmail, value["email"]));
-                        isSpoti.value = true;
-                        isSteam.value = true;
                         scrollController.animateTo(
                             scrollController.offset +
                                 MediaQuery.of(context).size.height,

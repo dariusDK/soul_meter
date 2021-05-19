@@ -8,8 +8,8 @@ class SteamDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-        valueListenable: isSteam,
-        builder: (BuildContext context, bool isSteams, Widget widget) {
+        valueListenable: isSteamConnected,
+        builder: (BuildContext context, bool result, Widget widget) {
           return Visibility(
               visible: true,
               child: Expanded(

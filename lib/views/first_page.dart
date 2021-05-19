@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/widgets/buttons/get_started.dart';
 import 'package:soul_meter/widgets/login/login_mobile_box.dart';
+import 'package:soul_meter/widgets/profile_settings.dart/profile_settings.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,9 +65,16 @@ class MainPage extends StatelessWidget {
                     valueListenable: isGetStartedSelected,
                     builder: (BuildContext context, bool isGetStarted,
                         Widget widget) {
+                      bool loginCondition;
+
+                      loginCondition = auth == null || auth.currentUser == null;
+
                       return Visibility(
                           visible: isGetStarted,
-                          child: Expanded(child: LoginMobileBoxWidget()));
+                          child: Expanded(
+                              child: loginCondition
+                                  ? LoginMobileBoxWidget()
+                                  : ProfileSettingsWidget()));
                     })
               ],
             ),

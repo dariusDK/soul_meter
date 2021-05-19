@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/widgets/dialogs/error_dialog.dart';
 
 class GetStartedButton extends StatelessWidget {
   @override
@@ -9,7 +10,20 @@ class GetStartedButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 6,
       child: TextButton(
           style: getStartedButtonDecoration,
-          onPressed: () {},
+          onPressed: () {
+            if (auth.currentUser != null) {
+              scrollController.animateTo(
+                  scrollController.offset + MediaQuery.of(context).size.height,
+                  curve: Curves.linear,
+                  duration: Duration(milliseconds: 500));
+            } else {
+              showDialog(
+                  context: context,
+                  builder: (context) => ShowErrorDialog(
+                      "before getting started you must login or create an account."));
+            }
+            isGetStartedSelected.value = true;
+          },
           child: Text(
             "Get Started",
             style: TextStyle(

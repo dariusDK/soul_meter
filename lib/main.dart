@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 /// Flutter code sample for SingleChildScrollView
 
 // In this example, the column becomes either as big as viewport, or as big as
@@ -10,12 +13,18 @@ import 'package:soul_meter/views/search_page.dart';
 import 'package:soul_meter/views/spotify_page.dart';
 import 'package:soul_meter/views/steam_page.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  Firebase.initializeApp().then((value) {
+    if (value != null) {
+      auth = FirebaseAuth.instanceFor(app: value);
+      runApp(MyApp());
+    } else
+      print("an error occured during firebase connection.");
+  });
+}
 
 /// This is the main application widget.
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
-
   static const String _title = 'Flutter Code Sample';
 
   @override

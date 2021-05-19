@@ -66,8 +66,8 @@ var rateResult = ValueNotifier(0.0);
 var isRatingOver = ValueNotifier(false);
 var isRatingStart = ValueNotifier(false);
 var isGetStartedSelected = ValueNotifier(false);
-var isSpoti = ValueNotifier(true);
-var isSteam = ValueNotifier(true);
+var isSpotifyConnected = ValueNotifier(false);
+var isSteamConnected = ValueNotifier(false);
 ScrollController scrollController = ScrollController();
 
 var currentUser;

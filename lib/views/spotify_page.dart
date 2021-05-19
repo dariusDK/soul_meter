@@ -9,8 +9,8 @@ class SpotifyDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-        valueListenable: isSpoti,
-        builder: (BuildContext context, bool isSpotify, Widget widget) {
+        valueListenable: isSpotifyConnected,
+        builder: (BuildContext context, bool result, Widget widget) {
           return Visibility(
               visible: true,
               child: Expanded(
