@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/widgets/search/search_bar_desktop.dart';
 
 class SearchBarDesktopBox extends StatelessWidget {
@@ -21,6 +23,13 @@ class SearchBarDesktopBox extends StatelessWidget {
               ),
             ),
             SearchBarDesktop(),
+            ValueListenableBuilder<bool>(
+                valueListenable: isLoading,
+                builder: (BuildContext context, bool result, Widget widget) {
+                  return Visibility(
+                      visible: isLoading.value,
+                      child: Lottie.asset('images/rocket.json'));
+                })
           ],
         ),
       ],

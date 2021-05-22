@@ -31,7 +31,8 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
               child: !_folded
                   ? TextField(
                       onSubmitted: (nickName) {
-                        FirebaseFirestore.instance
+                        isLoading.value = true;
+                        /*FirebaseFirestore.instance
                             .collection("user-names")
                             .doc(nickName)
                             .get()
@@ -41,7 +42,7 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
                             scrollController.offset +
                                 MediaQuery.of(context).size.height,
                             curve: Curves.linear,
-                            duration: Duration(milliseconds: 500));
+                            duration: Duration(milliseconds: 500));*/
                       },
                       decoration: InputDecoration(
                           hintText: 'Search',

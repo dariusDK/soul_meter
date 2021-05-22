@@ -13,7 +13,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: backgroundImage,
+      decoration: backgroundImage2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

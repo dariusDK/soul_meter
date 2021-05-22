@@ -1,15 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/widgets/text_boxs/default_text_box.dart';
 
-class ProfileSettingsWidget extends StatelessWidget {
-  final emailTextWidget = DefaultTextBoxWidget("e-mail", Icons.mail, false);
-  final passwordTextWidget = DefaultTextBoxWidget("password", Icons.lock, true);
-  final nickNameTextWidget =
-      DefaultTextBoxWidget("nick name", Icons.account_box, false);
-  final passwordAgainTextWidget =
-      DefaultTextBoxWidget("password again", Icons.lock, true);
+class ProfileSettingsWidget extends StatefulWidget {
+  @override
+  _ProfileSettingsWidgetState createState() => _ProfileSettingsWidgetState();
+}
+
+class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
+  final RoundedLoadingButtonController _btnController =
+      RoundedLoadingButtonController();
+
+  bool _checked = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,36 +28,62 @@ class ProfileSettingsWidget extends StatelessWidget {
         children: [
           Column(
             children: [
-              nickNameTextWidget,
-              emailTextWidget,
-              passwordTextWidget,
-              passwordAgainTextWidget,
+              Text(
+                "Welcome",
+                style: TextStyle(fontSize: 36),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      enabled: !_checked,
+                      decoration: InputDecoration(
+                          hintText: "merhaba",
+                          hintStyle:
+                              TextStyle(color: Colors.black, fontSize: 24)),
+                    ),
+                  ),
+                  Checkbox(
+                      value: _checked,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _checked = newValue;
+                        });
+                      })
+                ],
+              )
             ],
           ),
-          Divider(
-            color: Colors.white,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Spotify"),
-            style: spotifyButtonDecoration,
-          ),
-          DefaultTextBoxWidget(
-              "Steam Profile URL", Icons.ac_unit_outlined, false),
-          Divider(
-            color: Colors.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset(
+                  'assets/images/Spotify_icon.png',
+                ),
+                iconSize: 50,
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset('assets/images/steam.png'),
+                iconSize: 84,
+              ),
+            ],
           ),
           Container(
-            //margin: EdgeInsets.only(bottom: 65),
-            child: ElevatedButton(
-                style: defaultButtonDecoration,
-                onPressed: () {
-                  auth.signOut().then((value) {
-                    isGetStartedSelected.notifyListeners();
-                  });
-                },
-                child: Text("Log Out")),
-          ),
+              //margin: EdgeInsets.only(bottom: 65),
+              child: RoundedLoadingButton(
+            child: Text('Log Out', style: TextStyle(color: Colors.white)),
+            controller: _btnController,
+            onPressed: () {
+              auth.signOut().then((value) {
+                isGetStartedSelected.notifyListeners();
+              });
+            },
+          )),
         ],
       )),
     );
