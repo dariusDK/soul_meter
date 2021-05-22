@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
 import 'package:soul_meter/widgets/dialogs/error_dialog.dart';
@@ -12,6 +13,8 @@ class CreateTab extends StatelessWidget {
   final passwordAgainTextWidget =
       DefaultTextBoxWidget("password again", Icons.lock, true);
   bool _isCreateAccount = false;
+  final RoundedLoadingButtonController _btnController =
+      RoundedLoadingButtonController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,9 +29,6 @@ class CreateTab extends StatelessWidget {
               passwordAgainTextWidget,
             ],
           ),
-          Divider(
-            color: Colors.white,
-          ),
           ElevatedButton(
             onPressed: () {},
             child: Text("Spotify"),
@@ -36,27 +36,25 @@ class CreateTab extends StatelessWidget {
           ),
           DefaultTextBoxWidget(
               "Steam Profile URL", Icons.ac_unit_outlined, false),
-          Divider(
-            color: Colors.white,
-          ),
           Container(
-            //margin: EdgeInsets.only(bottom: 65),
-            child: ElevatedButton(
-                style: defaultButtonDecoration,
-                onPressed: () {
-                  createAccount(
-                          nickNameTextWidget.getText,
-                          emailTextWidget.getText,
-                          passwordTextWidget.getText,
-                          passwordAgainTextWidget.getText)
-                      .then((value) async => value.isEmpty
-                          ? Navigator.pushNamed(context, "/")
-                          : await showDialog(
+              //margin: EdgeInsets.only(bottom: 65),
+              child: RoundedLoadingButton(
+            child: Text('Creat Account', style: TextStyle(color: Colors.white)),
+            controller: _btnController,
+            onPressed: () {
+              createAccount(
+                      nickNameTextWidget.getText,
+                      emailTextWidget.getText,
+                      passwordTextWidget.getText,
+                      passwordAgainTextWidget.getText)
+                  .then((value) async => value.isEmpty
+                      ? Navigator.pushNamed(context, "/")
+                      : await showDialog(
                               context: context,
-                              builder: (context) => ShowErrorDialog(value)));
-                },
-                child: Text("Create Account")),
-          ),
+                              builder: (context) => ShowErrorDialog(value))
+                          .then((value) => _btnController.stop()));
+            },
+          )),
         ],
       ),
     );

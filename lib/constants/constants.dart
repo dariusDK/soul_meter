@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 ///      Dev Mode
 bool isLocal = false;
@@ -68,6 +69,7 @@ var isRatingStart = ValueNotifier(false);
 var isGetStartedSelected = ValueNotifier(false);
 var isSpotifyConnected = ValueNotifier(false);
 var isSteamConnected = ValueNotifier(false);
+var isLoading = ValueNotifier(false);
 ScrollController scrollController = ScrollController();
 
 var currentUser;
@@ -95,7 +97,7 @@ var backgroundImage = BoxDecoration(
 
 var backgroundImage2 = BoxDecoration(
     image: DecorationImage(
-        image: AssetImage("assets/images/bg2.png"), fit: BoxFit.cover));
+        image: AssetImage("assets/images/space.jpg"), fit: BoxFit.cover));
 var backgroundImage3 = BoxDecoration(
     image: DecorationImage(
         image: AssetImage("assets/images/space2.jpg"), fit: BoxFit.cover));
