@@ -28,27 +28,29 @@ class _LoginTabState extends State<LoginTab> {
             ],
           ),
           Container(
+              height: MediaQuery.of(context).size.height / 32,
+              width: MediaQuery.of(context).size.width / 5.5,
               //margin: EdgeInsets.only(top: 20),
               child: RoundedLoadingButton(
-            child: Text('Login', style: TextStyle(color: Colors.white)),
-            controller: _btnController,
-            onPressed: () {
-              login(emailTextWidget.getText, passwordTextWidget.getText)
-                  .then((value) {
-                if (value.isEmpty) {
-                  isGetStartedSelected.notifyListeners();
-                  scrollController.animateTo(
-                      scrollController.offset +
-                          MediaQuery.of(context).size.height,
-                      curve: Curves.linear,
-                      duration: Duration(milliseconds: 500));
-                } else
-                  showDialog(
-                      context: context,
-                      builder: (context) => ShowErrorDialog(value));
-              });
-            },
-          ))
+                child: Text('Login', style: TextStyle(color: Colors.white)),
+                controller: _btnController,
+                onPressed: () {
+                  login(emailTextWidget.getText, passwordTextWidget.getText)
+                      .then((value) {
+                    if (value.isEmpty) {
+                      isGetStartedSelected.notifyListeners();
+                      scrollController.animateTo(
+                          scrollController.offset +
+                              MediaQuery.of(context).size.height,
+                          curve: Curves.linear,
+                          duration: Duration(milliseconds: 500));
+                    } else
+                      showDialog(
+                          context: context,
+                          builder: (context) => ShowErrorDialog(value));
+                  });
+                },
+              ))
         ],
       ),
     );

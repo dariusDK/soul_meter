@@ -29,32 +29,61 @@ class CreateTab extends StatelessWidget {
               passwordAgainTextWidget,
             ],
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Spotify"),
-            style: spotifyButtonDecoration,
+          RichText(
+              text: TextSpan(
+                  text: "Before Get Started Connect ",
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width *
+                          MediaQuery.of(context).size.height /
+                          90000,
+                      color: Colors.grey),
+                  children: [
+                TextSpan(
+                    text: "At Least 1 App ",
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold)),
+                TextSpan(
+                  text: "To Your Account ",
+                )
+              ])),
+          Column(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 27,
+                width: MediaQuery.of(context).size.width / 5.5,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Spotify"),
+                  style: spotifyButtonDecoration,
+                ),
+              ),
+              DefaultTextBoxWidget(
+                  "Steam Profile URL", Icons.ac_unit_outlined, false),
+            ],
           ),
-          DefaultTextBoxWidget(
-              "Steam Profile URL", Icons.ac_unit_outlined, false),
           Container(
+              height: MediaQuery.of(context).size.height / 32,
+              width: MediaQuery.of(context).size.width / 5.5,
               //margin: EdgeInsets.only(bottom: 65),
               child: RoundedLoadingButton(
-            child: Text('Creat Account', style: TextStyle(color: Colors.white)),
-            controller: _btnController,
-            onPressed: () {
-              createAccount(
-                      nickNameTextWidget.getText,
-                      emailTextWidget.getText,
-                      passwordTextWidget.getText,
-                      passwordAgainTextWidget.getText)
-                  .then((value) async => value.isEmpty
-                      ? Navigator.pushNamed(context, "/")
-                      : await showDialog(
-                              context: context,
-                              builder: (context) => ShowErrorDialog(value))
-                          .then((value) => _btnController.stop()));
-            },
-          )),
+                child: Text('Creat Account',
+                    style: TextStyle(color: Colors.white)),
+                controller: _btnController,
+                onPressed: () {
+                  createAccount(
+                          nickNameTextWidget.getText,
+                          emailTextWidget.getText,
+                          passwordTextWidget.getText,
+                          passwordAgainTextWidget.getText)
+                      .then((value) async => value.isEmpty
+                          ? Navigator.pushNamed(context, "/")
+                          : await showDialog(
+                                  context: context,
+                                  builder: (context) => ShowErrorDialog(value))
+                              .then((value) => _btnController.stop()));
+                },
+              )),
         ],
       ),
     );

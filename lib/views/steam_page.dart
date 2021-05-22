@@ -38,9 +38,13 @@ class SteamDataPage extends StatelessWidget {
                                     DataInfoHorizontalWidget(
                                         "selam",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
-                                    DataInfoVerticalWidget("alo", "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.blue),
+                                    DataInfoVerticalWidget(
+                                        "alo",
+                                        "merhabaaaa",
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.blue),
                                   ],
                                 ),
                                 Row(
@@ -49,7 +53,8 @@ class SteamDataPage extends StatelessWidget {
                                     DataInfoHorizontalWidget(
                                         "selam",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.blue),
                                   ],
                                 ),
                               ],
@@ -68,19 +73,24 @@ class SteamDataPage extends StatelessWidget {
                                     DataInfoHorizontalWidget(
                                         "alo",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.blue),
                                   ],
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    DataInfoVerticalWidget("alo", "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                    DataInfoVerticalWidget(
+                                        "alo",
+                                        "merhabaaaa",
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.blue),
                                     DataInfoHorizontalWidget(
                                         "alo",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1")
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.blue)
                                   ],
                                 ),
                               ],

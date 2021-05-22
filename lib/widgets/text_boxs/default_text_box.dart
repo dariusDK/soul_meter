@@ -11,16 +11,19 @@ class DefaultTextBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:MediaQuery.of(context).size.width*MediaQuery.of(context).size.height/20000  ,
-      width: MediaQuery.of(context).size.width*MediaQuery.of(context).size.height/5000,
+      height: MediaQuery.of(context).size.height / 15,
+      width: MediaQuery.of(context).size.width / 5,
       //color: Colors.red,
       padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 10),
       child: TextField(
-        style: TextStyle(color: Colors.white,fontSize: MediaQuery.of(context).size.width*MediaQuery.of(context).size.height/80000),
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: MediaQuery.of(context).size.width *
+                MediaQuery.of(context).size.height /
+                80000),
         obscureText: this.isPassword,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(color: Color(0xFFccb0be))),
             labelStyle: TextStyle(color: Colors.white),
@@ -31,6 +34,7 @@ class DefaultTextBoxWidget extends StatelessWidget {
             prefixIcon: Icon(
               this.icon,
               color: Color(0xFF67525c),
+              size: MediaQuery.of(context).size.height / 35,
             ),
             //fillColor: Colors.grey[700],
             filled: true),

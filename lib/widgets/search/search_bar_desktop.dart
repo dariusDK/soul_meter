@@ -1,8 +1,6 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/functions/basic_functions.dart';
 
 class SearchBarDesktop extends StatefulWidget {
   @override
@@ -20,7 +18,7 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
       height: 56,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
-        color: Colors.white,
+        color: Colors.grey[200],
         boxShadow: kElevationToShadow[6],
       ),
       child: Row(
