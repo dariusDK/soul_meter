@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:soul_meter/constants/constants.dart';
-import 'package:soul_meter/widgets/text_boxs/default_text_box.dart';
 
 class ProfileSettingsWidget extends StatefulWidget {
   @override

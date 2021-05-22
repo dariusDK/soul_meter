@@ -38,9 +38,14 @@ class SpotifyDataPage extends StatelessWidget {
                                     DataInfoHorizontalWidget(
                                         "selam",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
-                                    DataInfoVerticalWidget("alo", "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.green),
+                                    DataInfoVerticalWidget(
+                                      "alo",
+                                      "merhabaaaa",
+                                      "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                      Colors.green,
+                                    ),
                                   ],
                                 ),
                                 Row(
@@ -49,7 +54,8 @@ class SpotifyDataPage extends StatelessWidget {
                                     DataInfoHorizontalWidget(
                                         "selam",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.green),
                                   ],
                                 ),
                               ],
@@ -68,7 +74,8 @@ class SpotifyDataPage extends StatelessWidget {
                                     DataInfoHorizontalWidget(
                                         "alo",
                                         "merhabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.green),
                                   ],
                                 ),
                                 Row(
@@ -78,11 +85,13 @@ class SpotifyDataPage extends StatelessWidget {
                                     DataInfoVerticalWidget(
                                         "alo",
                                         "merhabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1"),
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.green),
                                     DataInfoHorizontalWidget(
                                         "alo",
                                         "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1")
+                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        Colors.green)
                                   ],
                                 ),
                               ],

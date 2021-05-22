@@ -43,7 +43,7 @@ class _LoginMobileBoxWidgetState extends State<LoginMobileBoxWidget> {
                             style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width *
                                     MediaQuery.of(context).size.height /
-                                    70000)),
+                                    50000)),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 46),
@@ -51,7 +51,7 @@ class _LoginMobileBoxWidgetState extends State<LoginMobileBoxWidget> {
                             style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width *
                                     MediaQuery.of(context).size.height /
-                                    70000)),
+                                    50000)),
                       ),
                     ],
                     onPressed: (int newIndex) {
