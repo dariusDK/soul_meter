@@ -46,4 +46,8 @@ class DefaultTextBoxWidget extends StatelessWidget {
   get getText {
     return textEditingController.text;
   }
+
+  set text(String text) {
+    textEditingController.text = text;
+  }
 }

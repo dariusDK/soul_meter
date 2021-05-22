@@ -61,21 +61,24 @@ class _MainPageState extends State<MainPage> {
                 bottom: MediaQuery.of(context).size.height / 15),
             child: Column(
               children: [
-                ValueListenableBuilder<bool>(
-                    valueListenable: isGetStartedSelected,
-                    builder: (BuildContext context, bool isGetStarted,
-                        Widget widget) {
-                      bool loginCondition;
+                Expanded(
+                  child: ValueListenableBuilder<bool>(
+                      valueListenable: isGetStartedSelected,
+                      builder: (BuildContext context, bool isGetStarted,
+                          Widget widget) {
+                        bool loginCondition;
 
-                      loginCondition = auth == null || auth.currentUser == null;
+                        loginCondition =
+                            auth == null || auth.currentUser == null;
 
-                      return Visibility(
-                          visible: isGetStarted,
-                          child: Expanded(
-                              child: loginCondition
-                                  ? LoginMobileBoxWidget()
-                                  : ProfileSettingsWidget()));
-                    })
+                        if (isGetStarted) {
+                          return loginCondition
+                              ? LoginMobileBoxWidget()
+                              : ProfileSettingsWidget();
+                        }
+                        return SizedBox.shrink();
+                      }),
+                )
               ],
             ),
           ),

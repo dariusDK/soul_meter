@@ -69,9 +69,13 @@ var isGetStartedSelected = ValueNotifier(false);
 var isSpotifyConnected = ValueNotifier(false);
 var isSteamConnected = ValueNotifier(false);
 var isLoading = ValueNotifier(false);
+var canComplete = ValueNotifier(false);
+var isCreateComplete = ValueNotifier(false);
+
 ScrollController scrollController = ScrollController();
 String steamURL = "";
 var currentUser;
+bool isAccountCreated = false;
 
 String spAuthCode = "";
 String userEmail = "";

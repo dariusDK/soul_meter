@@ -78,7 +78,7 @@ class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
             controller: _btnController,
             onPressed: () {
               auth.signOut().then((value) {
-                isGetStartedSelected.notifyListeners();
+                isGetStartedSelected.value = false;
               });
             },
           )),

@@ -59,14 +59,15 @@ Future<String> createAccount(String nickName, String email, String password,
     nicknameValid = true;
   }
   if (nicknameValid == true && passwordValid == true && emailValid == true) {
-    await createUserFirebase(email, password).then((value) {
-      value.isEmpty
-          ? print("kayıt işlemi başarıyla tamamlandı")
-          : result = value;
-      FirebaseFirestore.instance
-          .collection('user-names')
-          .doc(nickName)
-          .set({'email': email});
+    await FirebaseFirestore.instance
+        .collection('user-names')
+        .doc(nickName)
+        .get()
+        .then((value) async {
+      value.exists ? result += " username is in use" : null;
+      await createUserFirebase(email, password).then((value) {
+        value.isEmpty ? saveUserNameToDB(nickName, email) : result = value;
+      });
     });
   }
   if (!nicknameValid) {
@@ -87,31 +88,17 @@ Future<String> createAccount(String nickName, String email, String password,
 Future<String> createUserFirebase(String email, String password) async {
   String result = "";
   try {
-    if (isSpotifySelected.value || isSteamSelected.value) {
-      await auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => FirebaseFirestore.instance
-                  .collection("user")
-                  .doc(value.user.email)
-                  .set({"email": email, "user_name": userName}).whenComplete(
-                      () {
-                if (isSteamSelected.value) {
-                  saveSteamUrlToDB(steamURL).then((value) => result = value);
-                } else {
-                  createDefaultSteamUser(value.user)
-                      .then((value) => result = value);
-                }
-                if (isSpotifySelected.value) {
-                  getSpotifyAuthCode();
-                } else {
-                  createDefaultSpotifyUser(value.user);
-                }
-              }))
-          .onError((error, stackTrace) => throw error);
-    } else {
-      result =
-          "you must add at least one account to your profile,Spotify would be great.";
-    }
+    await auth
+        .createUserWithEmailAndPassword(email: email, password: password)
+        .then((value) => FirebaseFirestore.instance
+                .collection("user")
+                .doc(value.user.email)
+                .set({"email": email, "user_name": userName}).whenComplete(() {
+              createDefaultSteamUser(value.user);
+              createDefaultSpotifyUser(value.user);
+            }))
+        .onError((error, stackTrace) => throw error);
+
     print("kullanıcı başarıyla oluşturuldu");
 
     return result;
@@ -120,6 +107,19 @@ Future<String> createUserFirebase(String email, String password) async {
     print(e.message);
     return e.message;
   }
+}
+
+Future<String> saveUserNameToDB(String nickName, String email) async {
+  String result = "";
+  try {
+    FirebaseFirestore.instance
+        .collection('user-names')
+        .doc(nickName)
+        .set({"email": email}).onError((error, stackTrace) => throw error);
+  } catch (e) {
+    result = e.toString();
+  }
+  return result;
 }
 
 Future<String> createDefaultSteamUser(User user) async {
@@ -231,11 +231,12 @@ String getSpotifyBasicData(Map<String, dynamic> data) {
 }
 
 bool isValidSteamURL(String url) {
-  bool result = false;
   try {
     if (url.startsWith(RegExp(r'^https://steamcommunity.com'))) {
-      result = true;
       steamURL = url;
+      return true;
+    } else {
+      return false;
     }
   } catch (e) {
     print(e.toString());
