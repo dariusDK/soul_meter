@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:soul_meter/constants/constants.dart';
@@ -12,6 +13,8 @@ class CreateTab extends StatelessWidget {
       DefaultTextBoxWidget("nick name", Icons.account_box, false);
   final passwordAgainTextWidget =
       DefaultTextBoxWidget("password again", Icons.lock, true);
+  final steamUrlTextWidget =
+      DefaultTextBoxWidget("Steam Profile URL", Icons.ac_unit_outlined, false);
   bool _isCreateAccount = false;
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
@@ -30,29 +33,35 @@ class CreateTab extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              isSpotifySelected.value = true;
+            },
             child: Text("Spotify"),
             style: spotifyButtonDecoration,
           ),
-          DefaultTextBoxWidget(
-              "Steam Profile URL", Icons.ac_unit_outlined, false),
+          steamUrlTextWidget,
           Container(
               //margin: EdgeInsets.only(bottom: 65),
               child: RoundedLoadingButton(
             child: Text('Creat Account', style: TextStyle(color: Colors.white)),
             controller: _btnController,
             onPressed: () {
+              isSteamSelected.value =
+                  isValidSteamURL(steamUrlTextWidget.getText);
               createAccount(
                       nickNameTextWidget.getText,
                       emailTextWidget.getText,
                       passwordTextWidget.getText,
                       passwordAgainTextWidget.getText)
-                  .then((value) async => value.isEmpty
-                      ? Navigator.pushNamed(context, "/")
-                      : await showDialog(
-                              context: context,
-                              builder: (context) => ShowErrorDialog(value))
-                          .then((value) => _btnController.stop()));
+                  .then((value) async {
+                if (value.isEmpty) {
+                } else {
+                  await showDialog(
+                          context: context,
+                          builder: (context) => ShowErrorDialog(value))
+                      .then((value) => _btnController.stop());
+                }
+              });
             },
           )),
         ],

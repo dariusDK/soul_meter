@@ -71,7 +71,7 @@ var isSpotifyConnected = ValueNotifier(false);
 var isSteamConnected = ValueNotifier(false);
 var isLoading = ValueNotifier(false);
 ScrollController scrollController = ScrollController();
-
+String steamURL = "";
 var currentUser;
 
 String spAuthCode = "";

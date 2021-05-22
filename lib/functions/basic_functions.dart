@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/functions/api_functions.dart';
 
 Future<String> login(String email, String password) async {
   String result = "";
@@ -84,20 +85,36 @@ Future<String> createAccount(String nickName, String email, String password,
 }
 
 Future<String> createUserFirebase(String email, String password) async {
+  String result = "";
   try {
-    await auth
-        .createUserWithEmailAndPassword(email: email, password: password)
-        .then((value) => FirebaseFirestore.instance
-                .collection("user")
-                .doc(value.user.email)
-                .set({"email": email, "user_name": userName}).whenComplete(() {
-              createDefaultSpotifyUser(value.user);
-              createDefaultSteamUser(value.user);
-            }))
-        .onError((error, stackTrace) => throw error);
+    if (isSpotifySelected.value || isSteamSelected.value) {
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => FirebaseFirestore.instance
+                  .collection("user")
+                  .doc(value.user.email)
+                  .set({"email": email, "user_name": userName}).whenComplete(
+                      () {
+                if (isSteamSelected.value) {
+                  saveSteamUrlToDB(steamURL).then((value) => result = value);
+                } else {
+                  createDefaultSteamUser(value.user)
+                      .then((value) => result = value);
+                }
+                if (isSpotifySelected.value) {
+                  getSpotifyAuthCode();
+                } else {
+                  createDefaultSpotifyUser(value.user);
+                }
+              }))
+          .onError((error, stackTrace) => throw error);
+    } else {
+      result =
+          "you must add at least one account to your profile,Spotify would be great.";
+    }
     print("kullanıcı başarıyla oluşturuldu");
 
-    return "";
+    return result;
   } catch (e) {
     print("kullanıcı oluşturulamadı");
     print(e.message);
@@ -211,4 +228,17 @@ String getSpotifyBasicData(Map<String, dynamic> data) {
   result += "Product: " + data['product'] + "\n";
 
   return result;
+}
+
+bool isValidSteamURL(String url) {
+  bool result = false;
+  try {
+    if (url.startsWith(RegExp(r'^https://steamcommunity.com'))) {
+      result = true;
+      steamURL = url;
+    }
+  } catch (e) {
+    print(e.toString());
+    return false;
+  }
 }
