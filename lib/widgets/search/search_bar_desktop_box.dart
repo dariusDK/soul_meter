@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/widgets/search/search_bar_desktop.dart';
+import 'package:soul_meter/widgets/search/search_loading.dart';
 
 class SearchBarDesktopBox extends StatelessWidget {
   @override
@@ -19,19 +18,16 @@ class SearchBarDesktopBox extends StatelessWidget {
             Text(
               "Find Your SoulMate ",
               style: TextStyle(
-                fontSize: 0.030 * MediaQuery.of(context).size.width,
+                color: Colors.grey[300],
+                fontSize: MediaQuery.of(context).size.width *
+                    MediaQuery.of(context).size.height /
+                    20000,
               ),
             ),
             SearchBarDesktop(),
-            ValueListenableBuilder<bool>(
-                valueListenable: isLoading,
-                builder: (BuildContext context, bool result, Widget widget) {
-                  return Visibility(
-                      visible: isLoading.value,
-                      child: Lottie.asset('images/rocket.json'));
-                })
           ],
         ),
+        SearchLoadingWidget()
       ],
     ));
   }

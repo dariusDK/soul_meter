@@ -7,7 +7,7 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height / 13,
-      width: MediaQuery.of(context).size.width / 6,
+      width: MediaQuery.of(context).size.width / 5.5,
       child: TextButton(
           style: getStartedButtonDecoration,
           onPressed: () {

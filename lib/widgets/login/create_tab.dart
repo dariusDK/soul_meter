@@ -32,6 +32,7 @@ class CreateTab extends StatelessWidget {
               passwordAgainTextWidget,
             ],
           ),
+<<<<<<< HEAD
           ElevatedButton(
             onPressed: () {
               isSpotifySelected.value = true;
@@ -40,9 +41,47 @@ class CreateTab extends StatelessWidget {
             style: spotifyButtonDecoration,
           ),
           steamUrlTextWidget,
+=======
+          RichText(
+              text: TextSpan(
+                  text: "Before Get Started Connect ",
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width *
+                          MediaQuery.of(context).size.height /
+                          90000,
+                      color: Colors.grey),
+                  children: [
+                TextSpan(
+                    text: "At Least 1 App ",
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold)),
+                TextSpan(
+                  text: "To Your Account ",
+                )
+              ])),
+          Column(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 27,
+                width: MediaQuery.of(context).size.width / 5.5,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Spotify"),
+                  style: spotifyButtonDecoration,
+                ),
+              ),
+              DefaultTextBoxWidget(
+                  "Steam Profile URL", Icons.ac_unit_outlined, false),
+            ],
+          ),
+>>>>>>> b44ea2dd685bc221efb8bf4dff9aecac61963d45
           Container(
+              height: MediaQuery.of(context).size.height / 32,
+              width: MediaQuery.of(context).size.width / 5.5,
               //margin: EdgeInsets.only(bottom: 65),
               child: RoundedLoadingButton(
+<<<<<<< HEAD
             child: Text('Creat Account', style: TextStyle(color: Colors.white)),
             controller: _btnController,
             onPressed: () {
@@ -64,6 +103,25 @@ class CreateTab extends StatelessWidget {
               });
             },
           )),
+=======
+                child: Text('Creat Account',
+                    style: TextStyle(color: Colors.white)),
+                controller: _btnController,
+                onPressed: () {
+                  createAccount(
+                          nickNameTextWidget.getText,
+                          emailTextWidget.getText,
+                          passwordTextWidget.getText,
+                          passwordAgainTextWidget.getText)
+                      .then((value) async => value.isEmpty
+                          ? Navigator.pushNamed(context, "/")
+                          : await showDialog(
+                                  context: context,
+                                  builder: (context) => ShowErrorDialog(value))
+                              .then((value) => _btnController.stop()));
+                },
+              )),
+>>>>>>> b44ea2dd685bc221efb8bf4dff9aecac61963d45
         ],
       ),
     );
