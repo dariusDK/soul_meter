@@ -11,6 +11,7 @@ class GetStartedButton extends StatelessWidget {
       child: TextButton(
           style: getStartedButtonDecoration,
           onPressed: () {
+            isGetStartedSelected.value = true;
             if (auth.currentUser != null) {
               scrollController.animateTo(
                   scrollController.offset + MediaQuery.of(context).size.height,
@@ -22,7 +23,6 @@ class GetStartedButton extends StatelessWidget {
                   builder: (context) => ShowErrorDialog(
                       "before getting started you must login or create an account."));
             }
-            isGetStartedSelected.value = true;
           },
           child: Text(
             "Get Started",

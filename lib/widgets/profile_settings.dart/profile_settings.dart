@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/widgets/buttons/spotify_profile.dart';
+import 'package:soul_meter/widgets/buttons/steam_profile.dart';
 
 class ProfileSettingsWidget extends StatefulWidget {
   @override
@@ -56,20 +58,7 @@ class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  'assets/images/Spotify_icon.png',
-                ),
-                iconSize: 50,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset('assets/images/steam.png'),
-                iconSize: 84,
-              ),
-            ],
+            children: [SteamProfileButton(), SpotifyProfileButton()],
           ),
           Container(
               //margin: EdgeInsets.only(bottom: 65),

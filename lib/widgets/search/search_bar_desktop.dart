@@ -1,6 +1,8 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/functions/basic_functions.dart';
 
 class SearchBarDesktop extends StatefulWidget {
   @override
@@ -30,17 +32,17 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
                   ? TextField(
                       onSubmitted: (nickName) {
                         isLoading.value = true;
-                        /*FirebaseFirestore.instance
+                        FirebaseFirestore.instance
                             .collection("user-names")
                             .doc(nickName)
                             .get()
-                            .then((value) =>
-                                rateFuction(userEmail, value["email"]));
-                        scrollController.animateTo(
-                            scrollController.offset +
-                                MediaQuery.of(context).size.height,
-                            curve: Curves.linear,
-                            duration: Duration(milliseconds: 500));*/
+                            .then((value) => rateFuction(
+                                    auth.currentUser.email, value["email"])
+                                .then((value) => scrollController.animateTo(
+                                    scrollController.offset +
+                                        MediaQuery.of(context).size.height,
+                                    curve: Curves.linear,
+                                    duration: Duration(milliseconds: 500))));
                       },
                       decoration: InputDecoration(
                           hintText: 'Search',

@@ -11,7 +11,9 @@ import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/views/first_page.dart';
 import 'package:soul_meter/views/search_page.dart';
 import 'package:soul_meter/views/spotify_page.dart';
+import 'package:soul_meter/views/spotify_page2.dart';
 import 'package:soul_meter/views/steam_page.dart';
+import 'package:soul_meter/views/steam_page2.dart';
 
 void main() {
   Firebase.initializeApp().then((value) {
@@ -50,8 +52,8 @@ class MyStatelessWidget extends StatelessWidget {
           child: Column(children: <Widget>[
             MainPage(),
             SearchPage(),
-            SpotifyDataPage(),
-            SteamDataPage(),
+            SpotifyDataPage2(),
+            SteamDataPage2(),
           ]),
         ),
       ),

@@ -9,10 +9,10 @@ class SpotifyDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-        valueListenable: isSpotifyConnected,
+        valueListenable: hasAnySpotifyResult,
         builder: (BuildContext context, bool result, Widget widget) {
           return Visibility(
-              visible: true,
+              visible: result,
               child: Expanded(
                 child: Container(
                   //color: Colors.white, // Red
@@ -35,26 +35,41 @@ class SpotifyDataPage extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    //track
                                     DataInfoHorizontalWidget(
-                                        "selam",
-                                        "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        spotifyUser1
+                                                .topTracksSortedByPopularity[0]
+                                            ["name"],
+                                        spotifyUser1
+                                                .topTracksSortedByPopularity[0]
+                                            ["album"]["artists"][0]["name"],
+                                        spotifyUser1
+                                                .topTracksSortedByPopularity[0]
+                                            ["album"]["images"][0]["url"],
                                         Colors.green),
+                                    //profil
                                     DataInfoVerticalWidget(
-                                      "alo",
-                                      "merhabaaaa",
-                                      "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                      spotifyUser1.me["display_name"],
+                                      " ",
+                                      spotifyUser1.me["images"][0]["url"],
                                       Colors.green,
                                     ),
                                   ],
                                 ),
+                                //artist
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     DataInfoHorizontalWidget(
-                                        "selam",
-                                        "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        spotifyUser1
+                                                .topArtistsSortedByPopularity[0]
+                                            ["name"],
+                                        spotifyUser1
+                                                .topArtistsSortedByPopularity[0]
+                                            ["genres"][0],
+                                        spotifyUser1
+                                                .topArtistsSortedByPopularity[0]
+                                            ["images"][0]["url"],
                                         Colors.green),
                                   ],
                                 ),
@@ -62,7 +77,7 @@ class SpotifyDataPage extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            //color: Colors.yellow,
+                            //user 2,
                             padding: EdgeInsets.only(right: 20),
                             height: MediaQuery.of(context).size.height * 0.70,
                             width: MediaQuery.of(context).size.width / 2,
@@ -72,9 +87,15 @@ class SpotifyDataPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     DataInfoHorizontalWidget(
-                                        "alo",
-                                        "merhabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        spotifyUser2
+                                                .topTracksSortedByPopularity[0]
+                                            ["name"],
+                                        spotifyUser2
+                                                .topTracksSortedByPopularity[0]
+                                            ["album"]["artists"][0]["name"],
+                                        spotifyUser2
+                                                .topTracksSortedByPopularity[0]
+                                            ["album"]["images"][0]["url"],
                                         Colors.green),
                                   ],
                                 ),
@@ -83,14 +104,20 @@ class SpotifyDataPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     DataInfoVerticalWidget(
-                                        "alo",
-                                        "merhabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        spotifyUser2.me["display_name"],
+                                        " ",
+                                        spotifyUser2.me["images"][0]["url"],
                                         Colors.green),
                                     DataInfoHorizontalWidget(
-                                        "alo",
-                                        "merhabaaaa",
-                                        "https://i.scdn.co/image/ed3ad692458c1c47745d4a0023475c6a71a24af1",
+                                        spotifyUser2
+                                                .topArtistsSortedByPopularity[0]
+                                            ["name"],
+                                        spotifyUser2
+                                                .topArtistsSortedByPopularity[0]
+                                            ["genres"][0],
+                                        spotifyUser2
+                                                .topArtistsSortedByPopularity[0]
+                                            ["images"][0]["url"],
                                         Colors.green)
                                   ],
                                 ),

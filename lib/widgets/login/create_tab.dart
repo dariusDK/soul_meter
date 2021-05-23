@@ -170,9 +170,13 @@ class _CreateTabState extends State<CreateTab> {
                           saveSteamUrlToDB(steamURL).then((value) async {
                             if (value.isEmpty) {
                               canComplete.value = true;
-
                               isCreateComplete.value = true;
                               isGetStartedSelected.value = false;
+                              scrollController.animateTo(
+                                  scrollController.offset +
+                                      MediaQuery.of(context).size.height,
+                                  curve: Curves.linear,
+                                  duration: Duration(milliseconds: 500));
                             } else {
                               await showDialog(
                                       context: context,
@@ -186,6 +190,11 @@ class _CreateTabState extends State<CreateTab> {
                           if (isSpotifyConnected.value) {
                             isCreateComplete.value = true;
                             isGetStartedSelected.value = false;
+                            scrollController.animateTo(
+                                scrollController.offset +
+                                    MediaQuery.of(context).size.height,
+                                curve: Curves.linear,
+                                duration: Duration(milliseconds: 500));
                           } else {
                             await showDialog(
                                     context: context,

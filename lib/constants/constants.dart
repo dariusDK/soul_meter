@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:soul_meter/constants/spotify_user.dart';
 
 ///      Dev Mode
 bool isLocal = false;
@@ -71,6 +72,14 @@ var isSteamConnected = ValueNotifier(false);
 var isLoading = ValueNotifier(false);
 var canComplete = ValueNotifier(false);
 var isCreateComplete = ValueNotifier(false);
+var hasAnySpotifyResult = ValueNotifier(false);
+var hasAnySteamResult = ValueNotifier(false);
+Map<String, dynamic> rateResultAllData;
+Map<String, dynamic> rateSpotifyData;
+Map<String, dynamic> rateSteamData;
+List<String> rateErrors = [];
+SpotifyUser spotifyUser1;
+SpotifyUser spotifyUser2;
 
 ScrollController scrollController = ScrollController();
 String steamURL = "";

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 import 'package:soul_meter/constants/constants.dart';
+import 'package:soul_meter/constants/spotify_user.dart';
 import 'package:soul_meter/functions/api_functions.dart';
 
 Future<String> login(String email, String password) async {
@@ -180,12 +181,67 @@ Future<double> rateFuction(String user1, String user2) async {
   print("user1 $user1 user2 $user2");
   await getFromServerMethod("/getrate", {"email1": user1, "email2": user2})
       .then((value) {
+    rateResultAllData = value;
+    if (rateResultAllData.containsKey("spotify")) {
+      rateSpotifyData = rateResultAllData["spotify"];
+      fillUsersSpotify(rateResultAllData["spotify"]);
+      hasAnySpotifyResult.value = true;
+    } else {
+      hasAnySpotifyResult.value = false;
+    }
+    if (rateResultAllData.containsKey("steam")) {
+      rateSpotifyData = rateResultAllData["stean"];
+      fillUsersSteam(rateResultAllData["stean"]);
+      hasAnySteamResult.value = true;
+    } else {
+      hasAnySteamResult.value = false;
+    }
     rateResult.value = value["result"] as double;
     result = rateResult.value;
     isRatingOver.value = true;
+    isLoading.value = false;
   });
   return result;
 }
+
+/*    "result":result*0.6+audio_feature_matching_score*0.4,
+    "user1_me":user1["me"],
+    "user2_me":user2["me"],
+    "user1_top_artists_sorted_by_popularity":user1_top_artists_sorted_by_popularity,
+    "user2_top_artists_sorted_by_popularity":user2_top_artists_sorted_by_popularity,
+    "user1_top_tracks_sorted_by_popularity":user1_top_tracks_sorted_by_popularity,
+    "user2_top_tracks_sorted_by_popularity":user2_top_tracks_sorted_by_popularity,
+    "user1_genres_sorted_by_popularity":user1_genres_sorted_by_popularity,
+    "user2_genres_sorted_by_popularity":user2_genres_sorted_by_popularity,
+    "most_popular_artists":most_popular_artists,
+    "num_of_matched_top_artists":num_of_matched_top_artists,
+    "num_of_matched_top_tracks":num_of_matched_top_tracks,
+    "num_of_matched_top_artists_genres":num_of_matched_top_artists_genres,
+    "most_popular_genres":most_popular_genres,
+    "num_of_matched_playlists_tracks":num_of_matched_playlists_tracks*/
+void fillUsersSpotify(Map<String, dynamic> rateSpotifyData) {
+  spotifyUser1 = SpotifyUser(
+      rateSpotifyData["user1_me"],
+      rateSpotifyData["user1_top_artists_sorted_by_popularity"],
+      rateSpotifyData["user1_top_tracks_sorted_by_popularity"],
+      rateSpotifyData["user1_genres_sorted_by_popularity"]);
+  spotifyUser2 = SpotifyUser(
+      rateSpotifyData["user2_me"],
+      (rateSpotifyData["user2_top_artists_sorted_by_popularity"]),
+      rateSpotifyData["user2_top_tracks_sorted_by_popularity"],
+      rateSpotifyData["user2_genres_sorted_by_popularity"]);
+  var a = spotifyUser1.topTracksSortedByPopularity[0]["name"];
+  a = spotifyUser1.topTracksSortedByPopularity[0]["album"]["artists"][0]
+      ["name"];
+  a = spotifyUser1.topTracksSortedByPopularity[0]["album"]["images"][0]["url"];
+  a = spotifyUser1.me["display_name"];
+  a = spotifyUser1.me["images"][0]["url"];
+  a = spotifyUser1.topArtistsSortedByPopularity[0]["name"];
+  a = spotifyUser1.topArtistsSortedByPopularity[0]["genres"][0];
+  a = spotifyUser1.topArtistsSortedByPopularity[0]["images"][0]["url"];
+}
+
+void fillUsersSteam(Map<String, dynamic> fillUsersSteam) {}
 
 Future<dynamic> getFromServerMethod(
     String path, Map<String, String> params) async {
