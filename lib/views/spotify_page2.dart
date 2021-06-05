@@ -14,61 +14,69 @@ class SpotifyDataPage2 extends StatelessWidget {
     return ValueListenableBuilder<bool>(
         valueListenable: hasAnySpotifyResult,
         builder: (BuildContext context, bool result, Widget widget) {
-          return Visibility(
-            visible: true,
-            child: Expanded(
-              child: Container(
-                  //color: Colors.white, // Red
-                  decoration: backgroundImage3,
-                  height: MediaQuery.of(context).size.height,
-                  //alignment: Alignment.center,
-                  child: Row(
-                    children: [
-                      Container(
+          return result
+              ? Visibility(
+                  visible: result,
+                  child: Expanded(
+                    child: Container(
+                        //color: Colors.white, // Red
+                        decoration: backgroundImage3,
                         height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: DefaultDataInfoWidget(
-                            spotifyUser1.me["name"],
-                            " asdasd",
-                            spotifyUser1.me["images"][0]["url"],
-                            Colors.green),
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                  child: CircularPercentIndicator(
-                                header: Text("RATE"),
-                                radius: 100,
-                                percent: rateResult.value,
-                              )),
-                              Container(
-                                  child: CircularPercentIndicator(radius: 80)),
-                              Container(
-                                  child: CircularPercentIndicator(
-                                radius: 60,
-                              ))
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: DefaultDataInfoWidget(
-                            spotifyUser2.me["name"],
-                            " asdasd",
-                            spotifyUser2.me["images"][0]["url"],
-                            Colors.green),
-                      )
-                    ],
-                  )),
-            ),
-          );
+                        //alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width / 3,
+                              child: DefaultDataInfoWidget(
+                                  rateResultAllData["spotify"]["user1_me"]
+                                      ["display_name"],
+                                  " asdasd",
+                                  rateResultAllData["spotify"]["user1_me"]
+                                      ["images"][0]["url"],
+                                  Colors.green),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width / 3,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                        child: CircularPercentIndicator(
+                                      header: Text("RATE"),
+                                      radius: 100,
+                                      percent: rateSpotifyData["result"],
+                                    )),
+                                    Container(
+                                        child: CircularPercentIndicator(
+                                            radius: 80)),
+                                    Container(
+                                        child: CircularPercentIndicator(
+                                      radius: 60,
+                                    ))
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width / 3,
+                              child: DefaultDataInfoWidget(
+                                  rateResultAllData["spotify"]["user2_me"]
+                                      ["display_name"],
+                                  " asdasd",
+                                  rateResultAllData["spotify"]["user2_me"]
+                                      ["images"][0]["url"],
+                                  Colors.green),
+                            )
+                          ],
+                        )),
+                  ),
+                )
+              : SizedBox.shrink();
         });
   }
 }

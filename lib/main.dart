@@ -53,7 +53,7 @@ class MyStatelessWidget extends StatelessWidget {
             MainPage(),
             SearchPage(),
             SpotifyDataPage2(),
-            SteamDataPage2(),
+            SteamDataPage2()
           ]),
         ),
       ),

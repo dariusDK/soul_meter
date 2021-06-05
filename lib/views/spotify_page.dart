@@ -38,20 +38,17 @@ class SpotifyDataPage extends StatelessWidget {
                                     //track
                                     DataInfoHorizontalWidget(
                                         spotifyUser1
-                                                .topTracksSortedByPopularity[0]
-                                            ["name"],
+                                            .top_artists[0].images[0].url,
                                         spotifyUser1
-                                                .topTracksSortedByPopularity[0]
-                                            ["album"]["artists"][0]["name"],
+                                            .top_artists[0].images[0].url,
                                         spotifyUser1
-                                                .topTracksSortedByPopularity[0]
-                                            ["album"]["images"][0]["url"],
+                                            .top_artists[0].images[0].url,
                                         Colors.green),
                                     //profil
                                     DataInfoVerticalWidget(
-                                      spotifyUser1.me["display_name"],
+                                      spotifyUser1.me.display_name,
                                       " ",
-                                      spotifyUser1.me["images"][0]["url"],
+                                      spotifyUser1.me.images[0].url,
                                       Colors.green,
                                     ),
                                   ],
@@ -61,15 +58,10 @@ class SpotifyDataPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     DataInfoHorizontalWidget(
+                                        spotifyUser1.top_artists[0].name,
+                                        spotifyUser1.top_artists[0].genres[0],
                                         spotifyUser1
-                                                .topArtistsSortedByPopularity[0]
-                                            ["name"],
-                                        spotifyUser1
-                                                .topArtistsSortedByPopularity[0]
-                                            ["genres"][0],
-                                        spotifyUser1
-                                                .topArtistsSortedByPopularity[0]
-                                            ["images"][0]["url"],
+                                            .top_artists[0].images[0].url,
                                         Colors.green),
                                   ],
                                 ),
@@ -87,15 +79,10 @@ class SpotifyDataPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     DataInfoHorizontalWidget(
-                                        spotifyUser2
-                                                .topTracksSortedByPopularity[0]
-                                            ["name"],
-                                        spotifyUser2
-                                                .topTracksSortedByPopularity[0]
-                                            ["album"]["artists"][0]["name"],
-                                        spotifyUser2
-                                                .topTracksSortedByPopularity[0]
-                                            ["album"]["images"][0]["url"],
+                                        spotifyUser1.top_artists[0].name,
+                                        spotifyUser1.top_artists[0].genres[0],
+                                        spotifyUser1
+                                            .top_artists[0].images[0].url,
                                         Colors.green),
                                   ],
                                 ),
@@ -104,20 +91,15 @@ class SpotifyDataPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     DataInfoVerticalWidget(
-                                        spotifyUser2.me["display_name"],
+                                        spotifyUser2.me.display_name,
                                         " ",
-                                        spotifyUser2.me["images"][0]["url"],
+                                        spotifyUser2.me.country,
                                         Colors.green),
                                     DataInfoHorizontalWidget(
-                                        spotifyUser2
-                                                .topArtistsSortedByPopularity[0]
-                                            ["name"],
-                                        spotifyUser2
-                                                .topArtistsSortedByPopularity[0]
-                                            ["genres"][0],
-                                        spotifyUser2
-                                                .topArtistsSortedByPopularity[0]
-                                            ["images"][0]["url"],
+                                        spotifyUser1.top_artists[0].name,
+                                        spotifyUser1.top_artists[0].genres[0],
+                                        spotifyUser1
+                                            .top_artists[0].images[0].url,
                                         Colors.green)
                                   ],
                                 ),

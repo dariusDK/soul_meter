@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:js';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -181,17 +182,15 @@ Future<double> rateFuction(String user1, String user2) async {
   print("user1 $user1 user2 $user2");
   await getFromServerMethod("/getrate", {"email1": user1, "email2": user2})
       .then((value) {
-    rateResultAllData = value;
+    rateResultAllData = value as Map;
     if (rateResultAllData.containsKey("spotify")) {
       rateSpotifyData = rateResultAllData["spotify"];
-      fillUsersSpotify(rateResultAllData["spotify"]);
       hasAnySpotifyResult.value = true;
     } else {
       hasAnySpotifyResult.value = false;
     }
     if (rateResultAllData.containsKey("steam")) {
-      rateSpotifyData = rateResultAllData["stean"];
-      fillUsersSteam(rateResultAllData["stean"]);
+      rateSpotifyData = rateResultAllData["steam"];
       hasAnySteamResult.value = true;
     } else {
       hasAnySteamResult.value = false;
@@ -204,41 +203,39 @@ Future<double> rateFuction(String user1, String user2) async {
   return result;
 }
 
-/*    "result":result*0.6+audio_feature_matching_score*0.4,
-    "user1_me":user1["me"],
-    "user2_me":user2["me"],
-    "user1_top_artists_sorted_by_popularity":user1_top_artists_sorted_by_popularity,
-    "user2_top_artists_sorted_by_popularity":user2_top_artists_sorted_by_popularity,
-    "user1_top_tracks_sorted_by_popularity":user1_top_tracks_sorted_by_popularity,
-    "user2_top_tracks_sorted_by_popularity":user2_top_tracks_sorted_by_popularity,
-    "user1_genres_sorted_by_popularity":user1_genres_sorted_by_popularity,
-    "user2_genres_sorted_by_popularity":user2_genres_sorted_by_popularity,
-    "most_popular_artists":most_popular_artists,
-    "num_of_matched_top_artists":num_of_matched_top_artists,
-    "num_of_matched_top_tracks":num_of_matched_top_tracks,
-    "num_of_matched_top_artists_genres":num_of_matched_top_artists_genres,
-    "most_popular_genres":most_popular_genres,
-    "num_of_matched_playlists_tracks":num_of_matched_playlists_tracks*/
 void fillUsersSpotify(Map<String, dynamic> rateSpotifyData) {
+  List<Track> top_tracks = [];
+  List<dynamic> temp = rateSpotifyData["user1_top_tracks_sorted_by_popularity"];
+  List<Artist> top_artists = [];
+  (rateSpotifyData["user1_top_artists_sorted_by_popularity"]
+          as List<Map<String, dynamic>>)
+      .forEach((element) {
+    top_artists.add(Artist.fromMap(element));
+  });
   spotifyUser1 = SpotifyUser(
-      rateSpotifyData["user1_me"],
-      rateSpotifyData["user1_top_artists_sorted_by_popularity"],
-      rateSpotifyData["user1_top_tracks_sorted_by_popularity"],
-      rateSpotifyData["user1_genres_sorted_by_popularity"]);
+      me: Me.fromMap(rateSpotifyData["user1_me"]),
+      top_artists: top_artists,
+      top_tracks: top_tracks,
+      top_genres: (rateSpotifyData["user1_genres_sorted_by_popularity"]
+          as List<Map<String, dynamic>>));
+  top_tracks = [];
+  (rateSpotifyData["user2_top_tracks_sorted_by_popularity"]
+          as List<Map<String, dynamic>>)
+      .forEach((element) {
+    top_tracks.add(Track.fromMap(element));
+  });
+  top_artists = [];
+  (rateSpotifyData["user2_top_artists_sorted_by_popularity"]
+          as List<Map<String, dynamic>>)
+      .forEach((element) {
+    top_artists.add(Artist.fromMap(element));
+  });
   spotifyUser2 = SpotifyUser(
-      rateSpotifyData["user2_me"],
-      (rateSpotifyData["user2_top_artists_sorted_by_popularity"]),
-      rateSpotifyData["user2_top_tracks_sorted_by_popularity"],
-      rateSpotifyData["user2_genres_sorted_by_popularity"]);
-  var a = spotifyUser1.topTracksSortedByPopularity[0]["name"];
-  a = spotifyUser1.topTracksSortedByPopularity[0]["album"]["artists"][0]
-      ["name"];
-  a = spotifyUser1.topTracksSortedByPopularity[0]["album"]["images"][0]["url"];
-  a = spotifyUser1.me["display_name"];
-  a = spotifyUser1.me["images"][0]["url"];
-  a = spotifyUser1.topArtistsSortedByPopularity[0]["name"];
-  a = spotifyUser1.topArtistsSortedByPopularity[0]["genres"][0];
-  a = spotifyUser1.topArtistsSortedByPopularity[0]["images"][0]["url"];
+      me: Me.fromMap(rateSpotifyData["user2_me"]),
+      top_artists: top_artists,
+      top_tracks: top_tracks,
+      top_genres: (rateSpotifyData["user2_genres_sorted_by_popularity"]
+          as List<Map<String, dynamic>>));
 }
 
 void fillUsersSteam(Map<String, dynamic> fillUsersSteam) {}
