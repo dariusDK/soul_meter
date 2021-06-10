@@ -46,8 +46,9 @@ class _LoginTabState extends State<LoginTab> {
                           duration: Duration(milliseconds: 500));
                     } else
                       showDialog(
-                          context: context,
-                          builder: (context) => ShowErrorDialog(value));
+                              context: context,
+                              builder: (context) => ShowErrorDialog(value))
+                          .then((value) => _btnController.stop());
                   });
                 },
               ))
