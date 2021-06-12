@@ -14,24 +14,14 @@ import 'package:soul_meter/functions/api_functions.dart';
 Future<String> login(String email, String password) async {
   String result = "";
   if (email.contains("@") && email.contains(".")) {
-    //pop up benzeri gelelbilir hataları yazmak için
     if (password.length > 5) {
       userEmail = email;
       try {
         await auth.signInWithEmailAndPassword(email: email, password: password);
       } on FirebaseAuthException catch (e) {
         result = e.message;
-        print(result);
-        if (result ==
-            "There is no user record corresponding to this identifier. The user may have been deleted.") {
-          result = "A user registered to the mail address could not be found.";
-        }
-        if (result == "Invalid e-mail or password") {
-          result = "Invalid e-mail or password";
-        }
         print("kullanıcı girişi başarısız");
       }
-      //getUserStatus(email); bu fonksiyon urle düzeltildikten sonr aaçılacak
     } else {
       result = "Invalid e-mail or password";
     }
@@ -172,10 +162,6 @@ Future<String> createDefaultSpotifyUser(User user) async {
 }
 
 Future<double> rateFuction(String user1, String user2) async {
-  //server a karşılaştıralacak verileri gönderip al
-  //kaan- server get
-  // getfrom server metonudan sadece sayfasının adı ve parapetreleri gönder
-  // örnek olarak getFromServerMethod("getrate?email1=${user1}?email2=$user2")
   double result;
   isRatingStart.value = true;
   isRatingOver.value = false;
