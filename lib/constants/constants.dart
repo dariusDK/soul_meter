@@ -72,7 +72,7 @@ var isSteamConnected = ValueNotifier(false);
 var isLoading = ValueNotifier(false);
 var canComplete = ValueNotifier(false);
 var isCreateComplete = ValueNotifier(false);
-var hasAnySpotifyResult = ValueNotifier(false);
+var hasAnySpotifyResult = ValueNotifier(false); //def false
 var hasAnySteamResult = ValueNotifier(false);
 Map<String, dynamic> rateResultAllData;
 Map<String, dynamic> rateSpotifyData;

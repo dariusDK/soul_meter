@@ -1,4 +1,5 @@
 import 'dart:convert';
+//import 'dart:ffi';
 import 'dart:io';
 import 'dart:js';
 
@@ -295,4 +296,9 @@ bool isValidSteamURL(String url) {
     print(e.toString());
     return false;
   }
+}
+
+List<String> filterSteamGames(List<dynamic> games) {
+  return games
+      .where((element) => !element['name'].toString().contains('Series([], )'));
 }
