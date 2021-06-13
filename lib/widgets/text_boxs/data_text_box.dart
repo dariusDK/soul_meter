@@ -19,6 +19,21 @@ class DataInfoTextBox extends StatelessWidget {
     this.data3 = data3;
     this.data4 = data4;
     this.data5 = data5;
+    this.data1 = this.data1 == null
+        ? "Error: Database has not record about this game"
+        : this.data1;
+    this.data2 = this.data2 == null
+        ? "Error: Database has not record about this game"
+        : this.data2;
+    this.data3 = this.data3 == null
+        ? "Error: Database has not record about this game"
+        : this.data3;
+    this.data4 = this.data4 == null
+        ? "Error: Database has not record about this game"
+        : this.data4;
+    this.data5 = this.data5 == null
+        ? "Error: Database has not record about this game"
+        : this.data5;
   }
   @override
   Widget build(BuildContext context) {
