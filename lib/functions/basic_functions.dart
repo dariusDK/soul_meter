@@ -134,12 +134,17 @@ Future<String> createDefaultSteamUser(User user) async {
 Future<String> saveSteamUrlToDB(String url) async {
   String result = "";
   try {
-    await FirebaseFirestore.instance
-        .collection("steam-data")
-        .doc(auth.currentUser.email)
-        .update({"profile_link": url, "status": true}).onError(
-            (error, stackTrace) => throw error);
+    await getFromServerMethod("steamauth", {"url": url}).then((value) =>
+        FirebaseFirestore.instance
+            .collection("steam-data")
+            .doc(auth.currentUser.email)
+            .update({
+          "profile_link": url,
+          "status": true,
+          "user_id": value
+        }).onError((error, stackTrace) => throw error));
   } catch (e) {
+    isSteamConnected.value = false;
     result = e.message;
   }
   return result;
@@ -288,3 +293,5 @@ List<String> filterSteamGames(List<dynamic> games) {
   return games
       .where((element) => !element['name'].toString().contains('Series([], )'));
 }
+
+getSteamIDFromDB(String email) {}

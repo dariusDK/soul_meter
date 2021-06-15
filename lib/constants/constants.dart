@@ -74,13 +74,14 @@ var canComplete = ValueNotifier(false);
 var isCreateComplete = ValueNotifier(false);
 var hasAnySpotifyResult = ValueNotifier(false); //def false
 var hasAnySteamResult = ValueNotifier(false);
+var lateSteamUrl = ValueNotifier(false);
 Map<String, dynamic> rateResultAllData;
 Map<String, dynamic> rateSpotifyData;
 Map<String, dynamic> rateSteamData;
 List<String> rateErrors = [];
 SpotifyUser spotifyUser1;
 SpotifyUser spotifyUser2;
-
+String steamProfilePictute = 'assets/images/steam.png';
 ScrollController scrollController = ScrollController();
 String steamURL = "";
 var currentUser;
@@ -99,6 +100,7 @@ String spScope =
     "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%20user-library-read%20playlist-read-private%20playlist-read-collaborative";
 
 //-----------------------------------
+String steamAPI = "EB31395DD110903F94EEA520E3F74C6F";
 String spAuthUrl = "https://accounts.spotify.com/authorize";
 FirebaseAuth auth;
 ValueNotifier<Map<String, bool>> states = ValueNotifier({});
@@ -112,7 +114,7 @@ var backgroundImage2 = BoxDecoration(
         image: AssetImage("assets/images/space.jpg"), fit: BoxFit.cover));
 var backgroundImage3 = BoxDecoration(
     image: DecorationImage(
-        image: AssetImage("assets/images/space2.jpg"), fit: BoxFit.cover));
+        image: AssetImage("assets/images/spacedata.jpg"), fit: BoxFit.cover));
 
 Text homePageHeader = Text(
   "SoulMeter",

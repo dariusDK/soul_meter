@@ -14,7 +14,7 @@ class SteamDataPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-        valueListenable: hasAnySpotifyResult,
+        valueListenable: hasAnySteamResult,
         builder: (BuildContext context, bool result, Widget widget) {
           return result
               ? Visibility(
@@ -22,7 +22,7 @@ class SteamDataPage2 extends StatelessWidget {
                   child: Expanded(
                     child: Container(
                         //color: Colors.white, // Red
-                        decoration: backgroundImage2,
+                        decoration: backgroundImage3,
                         height: MediaQuery.of(context).size.height,
                         //alignment: Alignment.center,
                         child: Row(
@@ -36,25 +36,78 @@ class SteamDataPage2 extends StatelessWidget {
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width / 3,
                               child: Center(
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                        child: CircularPercentIndicator(
-                                      header: Text("RATE"),
-                                      radius: 100,
-                                      percent: 0.8,
-                                    )),
-                                    Container(
-                                        child: CircularPercentIndicator(
-                                            radius: 80)),
-                                    Container(
-                                        child: CircularPercentIndicator(
-                                      radius: 60,
-                                    ))
-                                  ],
-                                ),
+                                child: ValueListenableBuilder(
+                                    valueListenable: isLoading,
+                                    builder: (BuildContext context, bool result,
+                                        Widget widget) {
+                                      return Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                              child: CircularPercentIndicator(
+                                            header: Text(
+                                              "Total Rate",
+                                              style: TextStyle(
+                                                  color: Colors.grey[300],
+                                                  fontSize: 24),
+                                            ),
+                                            center: Text(
+                                                (((rateResultAllData['steam']
+                                                            ['result']) *
+                                                        100) as double)
+                                                    .toStringAsFixed(1)),
+                                            radius: 140,
+                                            progressColor: Colors.blue,
+                                            lineWidth: 9.0,
+                                            percent: rateResultAllData['steam']
+                                                ["result"],
+                                          )),
+                                          Container(
+                                              child: CircularPercentIndicator(
+                                            header: Text(
+                                              "Top Games Rate",
+                                              style: TextStyle(
+                                                  color: Colors.grey[300],
+                                                  fontSize: 24),
+                                            ),
+                                            center: Text(((((rateResultAllData[
+                                                                'steam'][
+                                                            'matched_top_games_score'] /
+                                                        0.2)) *
+                                                    100) as double)
+                                                .toStringAsFixed(1)),
+                                            radius: 120,
+                                            lineWidth: 8.0,
+                                            progressColor: Colors.blue,
+                                            percent: rateResultAllData['steam'][
+                                                    "matched_top_games_score"] /
+                                                0.2,
+                                          )),
+                                          Container(
+                                              child: CircularPercentIndicator(
+                                            header: Text(
+                                              "Top Genres Rate",
+                                              style: TextStyle(
+                                                  color: Colors.grey[300],
+                                                  fontSize: 24),
+                                            ),
+                                            center: Text(((((rateResultAllData[
+                                                                'steam'][
+                                                            'matched_top_genres_score'] /
+                                                        0.2)) *
+                                                    100) as double)
+                                                .toStringAsFixed(1)),
+                                            radius: 100,
+                                            progressColor: Colors.blue,
+                                            lineWidth: 6.0,
+                                            percent: rateResultAllData['steam'][
+                                                    "matched_top_genres_score"] /
+                                                0.2,
+                                          ))
+                                        ],
+                                      );
+                                    }),
                               ),
                             ),
                             Container(
