@@ -48,7 +48,7 @@ class SteamDataInfoWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("En Çok Oynadığın Oyunlar",
+                    Text("Top 5 Most Played Games",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: MediaQuery.of(context).size.height / 40,
@@ -65,7 +65,7 @@ class SteamDataInfoWidget extends StatelessWidget {
                       rateResultAllData['steam']
                           ['user1_games_sorted_by_playing_time'][4]['name'],
                     ),
-                    Text("En Sevdiğin Türler",
+                    Text("Top 5 Genres",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: MediaQuery.of(context).size.height / 40,
@@ -97,7 +97,8 @@ class SteamDataInfoWidget extends StatelessWidget {
                   backgroundColor: Colors.redAccent,
                   radius: MediaQuery.of(context).size.height / 17,
                   child: Image.network(
-                    image,
+                    rateResultAllData['steam']['user1_steam_summaries']
+                        ['avatarfull'],
                     fit: BoxFit.fill,
                   ))),
         ],

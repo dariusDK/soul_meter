@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-/// Flutter code sample for SingleChildScrollView
-
-// In this example, the column becomes either as big as viewport, or as big as
-// the contents, whichever is biggest.
+/* Ve in yekâdullezîne keferû le yuzlikûneke bi ebsârihim lemmâ semiûz zikra ve 
+yekûlûne innehu le mecnûn(mecnûnun). Ve mâ huve illâ zikrun lil âlemîn(âlemîne).*/
 
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';

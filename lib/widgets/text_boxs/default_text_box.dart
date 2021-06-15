@@ -11,7 +11,7 @@ class DefaultTextBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 15,
+      height: MediaQuery.of(context).size.height / 14,
       width: MediaQuery.of(context).size.width / 5,
       //color: Colors.red,
       padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 10),
@@ -20,7 +20,7 @@ class DefaultTextBoxWidget extends StatelessWidget {
             color: Colors.white,
             fontSize: MediaQuery.of(context).size.width *
                 MediaQuery.of(context).size.height /
-                80000),
+                95000),
         obscureText: this.isPassword,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(

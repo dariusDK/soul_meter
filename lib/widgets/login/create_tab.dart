@@ -28,12 +28,6 @@ class _CreateTabState extends State<CreateTab> {
       DefaultTextBoxWidget("Steam Profile URL", Icons.ac_unit_outlined, false);
 
   bool _isCreateAccount = false;
-  CreateTab() {
-    this.nickNameTextWidget.text = "nick";
-    this.emailTextWidget.text = "mail@mail.com";
-    this.passwordAgainTextWidget.text = "123456";
-    this.passwordTextWidget.text = "123456";
-  }
 
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
@@ -98,12 +92,14 @@ class _CreateTabState extends State<CreateTab> {
                                 .snapshots(includeMetadataChanges: true),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                isSpotifyConnected.value = true;
+                                isSpotifyConnected.value =
+                                    snapshot.data.data()["status"];
                                 canComplete.value = true;
                                 return Text(isSpotifyConnected.value
                                     ? "Spotify connected!"
                                     : "Connect Spotify");
                               }
+                              return SizedBox.shrink();
                             })
                         : ValueListenableBuilder<bool>(
                             valueListenable: isSpotifyConnected,
