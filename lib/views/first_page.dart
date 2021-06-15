@@ -19,38 +19,44 @@ class _MainPageState extends State<MainPage> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            child: Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width / 50),
-                      child: Column(
-                        children: [
-                          Text(
-                            "SoulMeter",
-                            style: TextStyle(
-                                color: Colors.grey[300],
-                                fontSize: MediaQuery.of(context).size.width *
-                                    MediaQuery.of(context).size.height /
-                                    15000),
-                          ),
-                          Text(
-                            "1 step away to find your soulmate",
-                            style: TextStyle(
-                                color: Colors.grey[300],
-                                fontSize: MediaQuery.of(context).size.width *
-                                    MediaQuery.of(context).size.height /
-                                    40000),
-                          )
-                        ],
-                      )),
-                  Container(
-                    child: Center(child: GetStartedButton()),
-                  )
-                ],
-              ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width / 50),
+                          child: Column(
+                            children: [
+                              Text(
+                                "SoulMeter",
+                                style: TextStyle(
+                                    color: Colors.grey[300],
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            MediaQuery.of(context).size.height /
+                                            15000),
+                              ),
+                              Text(
+                                "1 step away to find your soulmate",
+                                style: TextStyle(
+                                    color: Colors.grey[300],
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            MediaQuery.of(context).size.height /
+                                            40000),
+                              )
+                            ],
+                          )),
+                      Container(
+                        child: Center(child: GetStartedButton()),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
