@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:soul_meter/constants/private_keys.dart';
 import 'package:soul_meter/constants/spotify_user.dart';
 
 ///      Dev Mode
@@ -90,17 +91,17 @@ bool isAccountCreated = false;
 String spAuthCode = "";
 String userEmail = "";
 String userName = "";
-String serverUrl = "managed-uaesyu2fxa-et.a.run.app";
+String serverUrl = PrivateKeys().serverUrl;
 
 //-----------Spotiffy---------
-String spClientID = "f1c7433d34324ec5bd7edc2885ea0e5c";
+String spClientID = PrivateKeys().spotifyClientKey;
 String spResponseType = "code";
-String spRedirectUrl = "https://managed-uaesyu2fxa-et.a.run.app/spauth";
+String spRedirectUrl = PrivateKeys().spotifyRedirectUrl;
 String spScope =
     "user-read-private%20user-read-email%20user-top-read%20user-read-playback-state%20user-library-read%20playlist-read-private%20playlist-read-collaborative";
 
 //-----------------------------------
-String steamAPI = "EB31395DD110903F94EEA520E3F74C6F";
+String steamAPI = PrivateKeys().steamAPIKey;
 String spAuthUrl = "https://accounts.spotify.com/authorize";
 FirebaseAuth auth;
 ValueNotifier<Map<String, bool>> states = ValueNotifier({});
