@@ -3,22 +3,24 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "d5410e4eb61b245ecdcb9d2019ec17a1",
-"assets/assets/images/Logomuz.png": "5bd276335106c68aaf0b6d5faa9d9a69",
-"assets/assets/images/ozan.ico": "1ed77c0e46b85071095f97343cff74d3",
-"assets/assets/images/spoti.png": "3a9a6fc1456a1ec8c7fb0c4d7aa93e4b",
-"assets/assets/images/spotify.png": "73b5b5660e6dd4e8a465186248f9b70d",
-"assets/assets/images/steam.png": "ed7d29a166f363f7db19950f225a089c",
+  "assets/AssetManifest.json": "9d0d3169c540ff04cb97b71e823925ef",
+"assets/assets/images/rocket.jpg": "99d0eb11dbdc158324b22983823f99f5",
+"assets/assets/images/rocket.json": "bbc6afa24b925c663a86cd3499db5140",
+"assets/assets/images/space.jpg": "be6c0d9339d6605ceada492be582f342",
+"assets/assets/images/space2.jpg": "14961df326b0be9c986a7b3fd1395952",
+"assets/assets/images/spacedata.jpg": "88441b3297792e2ac5c05334bf894c15",
+"assets/assets/images/Spotify_icon.png": "a423c885ba80c7358ffa266a787581ae",
+"assets/assets/images/steam.png": "9740824bb86c1b3383873a70bdc281e9",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/NOTICES": "0c46ceaa9659106cebfe0d1c33eba46a",
+"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"assets/NOTICES": "37201d768a84d288b5d2e215cd05c6e6",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "0fa063cfff591fb42fca6a461730b1ac",
-"/": "0fa063cfff591fb42fca6a461730b1ac",
-"main.dart.js": "96da46d209c351ea5b34c606c3fd4df7",
+"index.html": "905f88aff8fa236e6cd6bd263b7b61d7",
+"/": "905f88aff8fa236e6cd6bd263b7b61d7",
+"main.dart.js": "681ebc853472f767c81c6e87894bbf82",
 "manifest.json": "125559eec1e1ab47373e7513f0dab775",
 "version.json": "fd2b8627322c135cf1a56dfe2083002b"
 };
@@ -38,7 +40,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });

@@ -1,8 +1,9 @@
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:soul_meter/constants/constants.dart';
 import 'package:soul_meter/functions/basic_functions.dart';
-import 'package:soul_meter/widgets/alert_box/error_box_alert.dart';
+import 'package:soul_meter/widgets/dialogs/error_dialog.dart';
 
 class SearchBarDesktop extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
       height: 56,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
-        color: Colors.white,
+        color: Colors.grey[200],
         boxShadow: kElevationToShadow[6],
       ),
       child: Row(
@@ -31,15 +32,45 @@ class _SearchBarDesktopState extends State<SearchBarDesktop> {
               child: !_folded
                   ? TextField(
                       onSubmitted: (nickName) {
-                        FirebaseFirestore.instance
-                            .collection("user-names")
-                            .doc(nickName)
-                            .get()
-                            .then((value) {
-                          print(value);
-                          rateFuction(
-                              auth.currentUser.email, value.data()["email"]);
-                        });
+                        isLoading.value = true;
+                        try {
+                          if (auth.currentUser != null) {
+                            FirebaseFirestore.instance
+                                .collection("user-names")
+                                .doc(nickName)
+                                .get()
+                                .then((value) => value.exists
+                                    ? rateFuction(auth.currentUser.email, value["email"])
+                                        .then((value) => scrollController.animateTo(
+                                            scrollController.offset +
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .height,
+                                            curve: Curves.linear,
+                                            duration:
+                                                Duration(milliseconds: 500)))
+                                    : showDialog(
+                                            context: context,
+                                            builder: (context) => ShowErrorDialog(
+                                                "Cannot found that user"))
+                                        .then((value) {
+                                        isLoading.value = false;
+                                      }));
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (context) => ShowErrorDialog(
+                                    "You must login or create account to use this"));
+                          }
+                        } catch (e) {
+                          showDialog(
+                                  context: context,
+                                  builder: (context) =>
+                                      ShowErrorDialog("Cannot found that user"))
+                              .then((value) {
+                            isLoading.value = false;
+                          });
+                        }
                       },
                       decoration: InputDecoration(
                           hintText: 'Search',
